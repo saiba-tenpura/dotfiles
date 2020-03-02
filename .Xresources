@@ -1,0 +1,26 @@
+! .Xresources Config
+
+! URxvt
+!! Border
+URxvt.borderWidth: 0
+URxvt.internalBorder: 5
+URxvt.externalBorder: 15
+
+!! Font
+URxvt.letterSpace: 0
+
+!! Scrollbar
+URxvt.scrollBar: false
+URxvt.scrollstyle: rxvt
+
+!! Settings
+URxvt.buffered: false
+URxvt.skipBuiltinGlyphs: true
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.saveLines: 327515
+URxvt.iso14755: false
+URxvt.iso14755_2: false
+
+! Xft
+Xft.antialias: true

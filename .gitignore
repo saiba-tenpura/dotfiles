@@ -1,0 +1,27 @@
+.dotfiles
+
+# Security
+.gnupg/*
+!.gnupg/*.conf
+.ssh/
+
+# Common caches
+.*cache
+.wget-hsts
+
+# Misc commonly generated files
+.bash_history
+.zsh_history
+.dbus/
+.lesshst
+.python_history
+.subverstion/
+.wine/
+.Xauthority
+.xsession-errors
+
+# Misc junk files
+*.bak
+*.log
+*.swp
+*.tmp
