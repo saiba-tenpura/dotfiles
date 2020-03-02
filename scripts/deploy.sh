@@ -13,7 +13,7 @@
 BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
-DOTFILES="https://github.com/aynsoph/dotfiles.git"
+DOTFILES="https://github.com/aynsoph/dotfiles"
 PKG_LIST="bspwm openssh sxhkd neovim xorg-server xorg-xinit ${BOOT_LDR}"
 HOST="alpha"
 USER="aynsoph"
@@ -119,13 +119,12 @@ setup_chroot() {
     # Gen fstab
     genfstab -U /mnt >> /mnt/etc/fstab
 
-    cp "${WORK_DIR}/install.sh" /mnt/root/
+    cp "${WORK_DIR}/deploy.sh" /mnt/root/
 }
-
 
 # Cleanup, umount & reboot
 cleanup() {
-    rm /mnt/root/install.sh
+    rm /mnt/root/deploy.sh
     umount /mnt/boot /mnt
 }
 
@@ -175,8 +174,7 @@ _cfg_openssh() {
     printf "AllowUsers ${1}\n" >> /etc/ssh/sshd_config
 }
 
-# Configure user with sudo privileges &
-# get dotfiles if available
+# Configure user with sudo privileges
 _cfg_user() {
     # Usage: cfg_user user
     local sudo_file
@@ -190,9 +188,10 @@ _cfg_user() {
 # Configure user dotfiles
 _cfg_dotfiles() {
     # Usage: cfg_dotfiles user dotfiles
-    su - ${user} <<-EOF
-	curl ${dotfiles}/master/install.sh
-	install.sh ${dotfiles}
+    su - "${1}" <<-EOF
+	curl "${2/github/raw.githubusercontent}/master/install.sh" -o install.sh
+	chmod 744 install.sh
+	./install.sh ${2}
 	EOF
 }
 
@@ -205,15 +204,15 @@ _install_refind() {
     uuid=$(lsblk -no UUID "${1}2")
 
     read -r -d '' cfg <<-EOF
-    menuentry "Arch Linux" {
-       loader /vmlinuz-linux
-        initrd /initramfs-linux.img
-        options "rw root=UUID=${uuid}"
-        submentry "Use fallback initrd" {
-            initrd /initramfs-linux-fallback.img
-        }
-    }
-    EOF
+	menuentry "Arch Linux" {
+	loader /vmlinuz-linux
+	initrd /initramfs-linux.img
+	options "rw root=UUID=${uuid}"
+	    submentry "Use fallback initrd" {
+	        initrd /initramfs-linux-fallback.img
+	    }
+	}
+	EOF
 
     printf "${cfg}" > /boot/EFI/refind/refind.conf
 }
@@ -226,6 +225,7 @@ _install_grub() {
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+# Perform full installation
 main() {
     check_reqs
 
@@ -239,12 +239,12 @@ main() {
     [ -d /sys/firmware/efi ] && setup_gpt_scheme || setup_mbr_scheme
 
     setup_chroot
-    arch-chroot /mnt /root/install.sh -c
+    arch-chroot /mnt /root/deploy.sh -c
     cleanup
 
     cat <<-EOF >&2
 	$(tput setaf 2)Finished installation:$(tput sgr0)
-	Please remove ISO, reboot and then set appropriate passwords!
+	Please remove the ISO, reboot and then set appropriate passwords!
 	EOF
 
     exit 0
@@ -252,11 +252,13 @@ main() {
 
 # Configure inside of chroot via library
 main_configure() {
+    # Kernel adds 'p' to the end if the device name ends on a digit
+    [[ "${BLOCK_DEVICE: -1}" =~ ^[0-9]$ ]] && PART_PREFIX="${BLOCK_DEVICE}p" || PART_PREFIX="${BLOCK_DEVICE}"
+
     _cfg_time "${T_ZONE}"
     _cfg_locale "${KBD_LAYOUT}"
     _cfg_network
     _cfg_openssh "${USER}"
-
     _cfg_user "${USER}"
     _cfg_dotfiles "${USER}" "${DOTFILES}"
     [ "${BOOT_LDR}" = "refind-efi" ] && _install_refind "${PART_PREFIX}" "${BOOT_LDR_REPO}" || _install_grub "${BLOCK_DEVICE}"
@@ -273,7 +275,9 @@ while [ $# -gt 0 ]; do
             shift
             ;;
         -c|--configure)
-            CONF='true'
+            CONF=true
+            shift
+            shift
             ;;
         -d|--dotfiles)
             DOTFILES="$2"

@@ -13,13 +13,13 @@ This repository contains my personal configuration files (aka. *dotfiles*).
 In the following sections I'll explain how this dotfiles repository works, how to use it, how to restore it & how to setup your own.
 
 ## Installation
-The project provides two ways for setup by either running the *install.sh* for just setting copying the configurations or the *script/install_hw.sh* which is targeted at setting up a complete machine from scratch in a live environment (i.e. the official [Arch ISO](https://www.archlinux.org/download/).
+The project provides two ways for setup by either running the *install.sh* for just setting copying the configurations or the *script/install_hw.sh* which is targeted at setting up a complete machine from scratch in a live environment (i.e. the official [Arch Linux ISO](https://www.archlinux.org/download/).
 
 ### install.sh
 - Installs dotfiles.
 - Backups already present dotfiles, which would be overwritten.
 
-### scripts/install_hw.sh
+### scripts/deploy.sh
 - IS DESTRUCTIVE! Use at your own risk.
 - Setups a complete new hardware machine with dotfiles.
 - Parameters can be configured in the script.
