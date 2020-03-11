@@ -73,7 +73,7 @@ The following configurations are made:
   - Install refind-efi or grub as bootloader as defined by `bash $BOOT_LDR`.
 
 #### Full Installation
-When performing a full installation the script should be executed in an Arch Linux ISO live environment. In addition to performing all the aforementioned configurations the script also setups the mirrorlist based on the given `bash $COUNTRY`, installs the basic packages and everything as defined by `bash $PKG_LIST` as well as a basic partition scheme. (MBR or GPT depending on the system)
+When performing a full installation the script should be executed in an Arch Linux ISO live environment. In addition to performing all the aforementioned configurations the script also setups the mirrorlist based on the given `bash $COUNTRY`, enables multilib support (to install 32-bit packages like steam), installs the basic packages and everything as defined by `bash $PKG_LIST` as well as a basic partition scheme. (MBR or GPT depending on the system)
 
 ```bash
 # Get the current version of the script

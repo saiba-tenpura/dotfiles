@@ -105,7 +105,11 @@ setup_mbr_scheme() {
 # Install packages, configure env, cleanup
 setup_chroot() {
     # Usage: setup_chroot conf_file
-    local mirrorlist
+    local mirrorlist pac_conf
+
+    # Enable multilib support
+    pac_conf=$(<"/etc/pacman.conf")
+    printf "${pac_conf/\#\[multilib]$'\n'\#Include/[multilib]$'\n'Include}" > /etc/pacman.conf
 
     # Setup mirrorlist
     mirrorlist=$(curl -s "https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=https&use_mirro_status=on")
