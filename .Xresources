@@ -16,7 +16,6 @@ URxvt.scrollstyle: rxvt
 !! Settings
 URxvt.buffered: false
 URxvt.skipBuiltinGlyphs: true
-URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.saveLines: 327515
 URxvt.iso14755: false

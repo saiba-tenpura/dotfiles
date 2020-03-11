@@ -8,17 +8,16 @@
 # HOST            Hostname for the system.
 # USER            Name of sudo user to create.
 # T_ZONE          Timezone of the system. (i.e. '/usr/share/zoneinfo/${T_ZONE}')
-# KBD_LAYOUT      Keyboard layout.
 
 BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
-PKG_LIST="bspwm openssh sxhkd neovim xorg-server xorg-xinit ${BOOT_LDR}"
+PKG_LIST="alacritty blender bspwm gimp libalsa neovim nitrogen openssh picom pulseaudio pulseaudio-alsa sxhkd xorg-server xorg-xinit ${BOOT_LDR}"
+AUR_LIST="polybar"
 HOST="alpha"
 USER="aynsoph"
 T_ZONE="Europe/Berlin"
-KBD_LAYOUT="de-latin1-nodeadkeys"
 
 # Print usage info && exit
 usage() {
@@ -114,7 +113,7 @@ setup_chroot() {
     pacman -Su >/dev/null 2>&1
 
     # Install base environment
-    pacstrap /mnt base linux linux-firmware dhcpcd git sudo ${PKG_LIST}
+    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo ${PKG_LIST}
 
     # Gen fstab
     genfstab -U /mnt >> /mnt/etc/fstab
@@ -137,7 +136,7 @@ _error() {
 
 # Configure timesync & timezone
 _cfg_time() {
-    # Usage: cfg_time timezone
+    # Usage: _cfg_time timezone
     ln -sf /usr/share/zoneinfo/"${1}" /etc/localtime
     hwclock --systohc
     timedatectl set-ntp true
@@ -145,7 +144,7 @@ _cfg_time() {
 
 # Configure system language
 _cfg_locale() {
-    # Usage: cfg_locale keyboard
+    # Usage: _cfg_locale
     local tmp_locale
 
     tmp_locale=$(<"/etc/locale.gen")
@@ -153,12 +152,25 @@ _cfg_locale() {
     locale-gen
 
     printf "LANG=en_US.UTF-8\n" > /etc/locale.conf
-    [ -n "${1}" ] && printf "KEYMAP=de-latin1-nodeadkeys\n" > /etc/vconsole.conf
 }
 
+# Configure keyboard for vconsole & X
+_cfg_kbd() {
+    # Usage: _cfg_kbd
+    printf "KEYMAP=de-latin1-nodeadkeys\n" > /etc/vconsole.conf
+
+    cat <<-EOF > /etc/X11/xorg.conf.d/20-keyboard.conf
+	Section "InputClass"
+	    Identifier "keyboard"
+	    MatchIsKeyboard "yes"
+	    Option "XkbLayout" "de"
+	    Option "XkbVariant" "nodeadkeys"
+	EndSection
+	EOF
+}
 # Configure hostname, hosts, dhcpd
 _cfg_network() {
-    # Usage: cfg_network hostname
+    # Usage: _cfg_network hostname
     printf "${1}\n" > /etc/hostname
     printf "%-12s localhost\n" "127.0.0.1" "::1" > /etc/hosts
     systemctl enable dhcpcd.service
@@ -166,7 +178,7 @@ _cfg_network() {
 
 # Disable root login, only allow $USER
 _cfg_openssh() {
-    # Usage: cfg_openssh user
+    # Usage: _cfg_openssh user
     local tmp_sshd
 
     tmp_sshd=$(<"/etc/ssh/sshd_config")
@@ -176,7 +188,7 @@ _cfg_openssh() {
 
 # Configure user with sudo privileges
 _cfg_user() {
-    # Usage: cfg_user user
+    # Usage: _cfg_user user
     local sudo_file
 
     sudo_file="/etc/sudoers.d/10-${1}"
@@ -187,7 +199,7 @@ _cfg_user() {
 
 # Configure user dotfiles
 _cfg_dotfiles() {
-    # Usage: cfg_dotfiles user dotfiles
+    # Usage: _cfg_dotfiles user dotfiles
     su - "${1}" <<-EOF
 	curl "${2/github/raw.githubusercontent}/master/install.sh" -o install.sh
 	chmod 744 install.sh
@@ -195,9 +207,21 @@ _cfg_dotfiles() {
 	EOF
 }
 
+# Install aur helper & packages
+_install_aur() {
+    # Usage: _install_aur user aur_pkgs
+    su - "${1}" <<-EOF
+	git clone https://aur.archlinux.org/yay.git
+	cd yay
+	makepkg -si
+	rm -rf ./
+	yay -S --noconfirm ${2}
+	EOF
+}
+
 # Install rEFInd as bootloader
 _install_refind() {
-    # Usage: install_refind device
+    # Usage: _install_refind device
     local cfg uuid
 
     refind-install
@@ -219,7 +243,7 @@ _install_refind() {
 
 # Install grub as bootloader
 _install_grub() {
-    # Usage: install_grub device
+    # Usage: _install_grub device
     [ -d /sys/firmware/efi ] && grub-install --target=i386-pc "${1}" || \
         grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     grub-mkconfig -o /boot/grub/grub.cfg
@@ -256,11 +280,13 @@ main_configure() {
     [[ "${BLOCK_DEVICE: -1}" =~ ^[0-9]$ ]] && PART_PREFIX="${BLOCK_DEVICE}p" || PART_PREFIX="${BLOCK_DEVICE}"
 
     _cfg_time "${T_ZONE}"
-    _cfg_locale "${KBD_LAYOUT}"
-    _cfg_network
+    _cfg_locale
+    [ $COUNTRY = 'DE' ] && _cfg_kbd
+    _cfg_network "${HOST}"
     _cfg_openssh "${USER}"
     _cfg_user "${USER}"
     _cfg_dotfiles "${USER}" "${DOTFILES}"
+    _install_aur "${USER}" "${AUR_LIST}"
     [ "${BOOT_LDR}" = "refind-efi" ] && _install_refind "${PART_PREFIX}" "${BOOT_LDR_REPO}" || _install_grub "${BLOCK_DEVICE}"
 }
 

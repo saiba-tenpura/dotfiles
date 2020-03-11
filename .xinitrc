@@ -29,3 +29,15 @@ if [ -d /etc/X11/xinit/xinirc.d ]; then
     done
     unset f
 fi
+
+session=${1:-bspwm}
+
+killall -q "picom"; sleep 0.5; picom &
+killall -q "polybar"; sleep 0.5; polybar $session &
+exec nitrogen --restore &
+
+case $session in
+    *)
+        exec $session
+	;;
+esac
