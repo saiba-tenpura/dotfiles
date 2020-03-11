@@ -13,7 +13,7 @@ BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
-PKG_LIST="alacritty blender bspwm gimp libalsa neovim nitrogen openssh picom pulseaudio pulseaudio-alsa sxhkd xorg-server xorg-xinit ${BOOT_LDR}"
+PKG_LIST="alacritty blender bspwm gimp libalsa neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd xorg-server xorg-xinit ${BOOT_LDR}"
 AUR_LIST="polybar"
 HOST="alpha"
 USER="aynsoph"
@@ -137,7 +137,7 @@ _error() {
 # Configure timesync & timezone
 _cfg_time() {
     # Usage: _cfg_time timezone
-    ln -sf /usr/share/zoneinfo/"${1}" /etc/localtime
+    ln -sf "/usr/share/zoneinfo/${1}" /etc/localtime
     hwclock --systohc
     timedatectl set-ntp true
 }
@@ -176,16 +176,6 @@ _cfg_network() {
     systemctl enable dhcpcd.service
 }
 
-# Disable root login, only allow $USER
-_cfg_openssh() {
-    # Usage: _cfg_openssh user
-    local tmp_sshd
-
-    tmp_sshd=$(<"/etc/ssh/sshd_config")
-    printf "${tmp_sshd//\#PermitRootLogin prohibit-password/PermitRootLogin no}\n" > /etc/ssh/sshd_config
-    printf "AllowUsers ${1}\n" >> /etc/ssh/sshd_config
-}
-
 # Configure user with sudo privileges
 _cfg_user() {
     # Usage: _cfg_user user
@@ -214,7 +204,7 @@ _install_aur() {
 	git clone https://aur.archlinux.org/yay.git
 	cd yay
 	makepkg -si
-	rm -rf ./
+	rm -rf ~/yay
 	yay -S --noconfirm ${2}
 	EOF
 }
@@ -283,7 +273,6 @@ main_configure() {
     _cfg_locale
     [ $COUNTRY = 'DE' ] && _cfg_kbd
     _cfg_network "${HOST}"
-    _cfg_openssh "${USER}"
     _cfg_user "${USER}"
     _cfg_dotfiles "${USER}" "${DOTFILES}"
     _install_aur "${USER}" "${AUR_LIST}"
