@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # BLOCK_DEVICE    Target block device for installation.
 # BOOT_LDR        Bootloader to use. Supported options are BIOS: grub UEFI: grub refind-efi
@@ -13,7 +14,7 @@ BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
-PKG_LIST="alacritty blender bspwm gimp libalsa neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd xorg-server xorg-xinit ${BOOT_LDR}"
+PKG_LIST="alacritty blender bspwm gimp neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd xorg-server xorg-xinit ${BOOT_LDR}"
 AUR_LIST="polybar"
 HOST="alpha"
 USER="aynsoph"
@@ -163,6 +164,7 @@ _cfg_kbd() {
     # Usage: _cfg_kbd
     printf "KEYMAP=de-latin1-nodeadkeys\n" > /etc/vconsole.conf
 
+    mkdir -p /etc/X11/xorg.conf.d/
     cat <<-EOF > /etc/X11/xorg.conf.d/20-keyboard.conf
 	Section "InputClass"
 	    Identifier "keyboard"
@@ -183,19 +185,14 @@ _cfg_network() {
 # Configure user with sudo privileges
 _cfg_user() {
     # Usage: _cfg_user user
-    local sudo_file
-
-    sudo_file="/etc/sudoers.d/10-${1}"
     useradd -m -s /bin/bash "${1}"
-    printf "${1} ALL=(ALL) ALL\n" >> "${sudo_file}"
-    chmod 440 "${sudo_file}"
 }
 
 # Configure user dotfiles
 _cfg_dotfiles() {
     # Usage: _cfg_dotfiles user dotfiles
     su - "${1}" <<-EOF
-	curl "${2/github/raw.githubusercontent}/master/install.sh" -o install.sh
+	curl -sO "${2/github/raw.githubusercontent}/master/install.sh"
 	chmod 744 install.sh
 	./install.sh ${2}
 	EOF
@@ -204,13 +201,26 @@ _cfg_dotfiles() {
 # Install aur helper & packages
 _install_aur() {
     # Usage: _install_aur user aur_pkgs
+    local sudo_file
+
+    sudo_file="/etc/sudoers.d/10-${1}"
+    printf "${1} ALL=(ALL) NOPASSWD: ALL"
+
     su - "${1}" <<-EOF
-	git clone https://aur.archlinux.org/yay.git
-	cd yay
-	makepkg -si
-	rm -rf ~/yay
-	yay -S --noconfirm ${2}
+    git clone https://aur.archlinux.org/yay.git ~/yay
+    (cd ~/yay; makepkg --noconfirm -si; rm -rf ~/yay)
+    yay --noconfirm -S ${2}
 	EOF
+}
+
+# Allow sudo & specific commands
+_cfg_sudo() {
+    # Usage: _cfg_sudo user
+    local sudo_file
+
+    sudo_file="/etc/sudoers.d/10-${1}"
+    printf "${1} ALL=(ALL) ALL\n${1} ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/mount,/usr/bin/umount" > "${sudo_file}"
+    chmod 440 "${sudo_file}"
 }
 
 # Install rEFInd as bootloader
@@ -223,9 +233,9 @@ _install_refind() {
 
     read -r -d '' cfg <<-EOF
 	menuentry "Arch Linux" {
-	loader /vmlinuz-linux
-	initrd /initramfs-linux.img
-	options "rw root=UUID=${uuid}"
+	    loader /vmlinuz-linux
+	    initrd /initramfs-linux.img
+	    options "rw root=UUID=${uuid}"
 	    submentry "Use fallback initrd" {
 	        initrd /initramfs-linux-fallback.img
 	    }
@@ -245,6 +255,10 @@ _install_grub() {
 
 # Perform full installation
 main() {
+    # Cleanup on exit
+    trap cleanup EXIT
+
+    # Check for prerequisites
     check_reqs
 
     # Set path to script
@@ -258,7 +272,6 @@ main() {
 
     setup_chroot
     arch-chroot /mnt /root/deploy.sh -c
-    cleanup
 
     cat <<-EOF >&2
 	$(tput setaf 2)Finished installation:$(tput sgr0)
@@ -280,6 +293,7 @@ main_configure() {
     _cfg_user "${USER}"
     _cfg_dotfiles "${USER}" "${DOTFILES}"
     _install_aur "${USER}" "${AUR_LIST}"
+    _cfg_sudo "${USER}"
     [ "${BOOT_LDR}" = "refind-efi" ] && _install_refind "${PART_PREFIX}" "${BOOT_LDR_REPO}" || _install_grub "${BLOCK_DEVICE}"
 }
 

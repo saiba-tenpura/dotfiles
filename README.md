@@ -5,15 +5,15 @@ This repository contains my personal configuration files (aka. **dotfiles**) and
 
 ## Overview
 The dotfiles currently contain custom configurations for the following:
-- **OS**: (Arch)[https://archlinux.org]
-- **Background Browser**: (Nitrogen)[https://github.com/l3ib/nitrogen]
-- **Bar**: (Polybar)[https://github.com/polybar/polybar]
-- **Compositor**: (picom)[https://github.com/yshui/picom]
-- **Editor**: (Neovim)[https://github.com/neovim/neovim]
-- **Hotkey Manager**: (sxhkd)[https://github.com/baskerville/sxhkd]
+- **OS**: [Arch](https://archlinux.org)
+- **Background Browser**: [Nitrogen](https://github.com/l3ib/nitrogen)
+- **Bar**: [Polybar](https://github.com/polybar/polybar)
+- **Compositor**: [picom](https://github.com/yshui/picom)
+- **Editor**: [Neovim](https://github.com/neovim/neovim)
+- **Hotkey Manager**: [sxhkd](https://github.com/baskerville/sxhkd)
 - **Shell**: bash
-- **Terminal**: (Alacritty)[https://github.com/alacritty/alacritty]
-- **Window Manager**: (bspwm)[https://github.com/baskerville/bspwm]
+- **Terminal**: [Alacritty](https://github.com/alacritty/alacritty)
+- **Window Manager**: [bspwm](https://github.com/baskerville/bspwm)
 
 ## Installation
 The project provides two ways for setup by either running the **install.sh** for just setting copying the configurations or the **script/install_hw.sh** which is targeted at setting up a complete machine from scratch from within the official [Arch Linux ISO](https://www.archlinux.org/download/).
@@ -22,8 +22,9 @@ The project provides two ways for setup by either running the **install.sh** for
 Clones a given bare git repository to **~/.dotfiles** and installs the contained configuration files. Conflicting configuration files are backed up to **~/.dotfiles.bak**.
 
 ```bash
-# Get the current Version of script
-curl https://raw.githubusercontent.com/aynsoph/dotfiles/master/install.sh -o install.sh
+# Get the script & make it executable
+curl -sO https://raw.githubusercontent.com/aynsoph/dotfiles/master/install.sh
+chmod u+x install.sh
 
 # Execute the script defaults to this repo
 ./install.sh
@@ -44,16 +45,18 @@ The possible settings are defined & described at the top of the script itself.
 Can be used on an already existing machine to adjust the basic configuration. (or for example when the basic partioning scheme provided by the full installation of the script doesn't suffice)
 
 ```bash
-# Get the current version of the script
-curl https://raw.githubusercontent.com/aynsoph/dotfiles/master/scripts/deploy.sh -o deploy.sh
+# Get the script & make it executable
+curl -sO https://raw.githubusercontent.com/aynsoph/dotfiles/master/scripts/deploy.sh
+chmod u+x deploy.sh
+
 # Execute
 ./deploy.sh --configure
 ```
 
 The following configurations are made:
 - **Time**:
-  - The timezone will be set as defined by `bash $T_ZONE` for example 'Europe/Berlin'.
-  - The **/etc/adjtime** is generated via `bash hwclock --systohc`.
+  - The timezone will be set as defined by `$T_ZONE` for example 'Europe/Berlin'.
+  - The **/etc/adjtime** is generated via `hwclock --systohc`.
   - Activates the time synchronisation via ntp.
 - **Locale**:
   - Uncomments **en_US.UTF-8** in `/etc/locale.gen`.
@@ -61,23 +64,25 @@ The following configurations are made:
 - **Keyboard Layout** (Only if country is 'DE'):
   - Creates the `/etc/vconsole.conf` & `/etc/X11/xorg.conf.d/20-keyboard.conf` to use a german keyboard layout.
 - **Network**:
-  - Sets hostname as defined by `bash $HOST`.
+  - Sets hostname as defined by `$HOST`.
   - Create basic `/etc/hosts` file.
   - Enable the **dhcpd.service**.
 - **User**:
-  - Add user with name as defined by `bash $USER` and give him sudo privileges.
+  - Add user with name as defined by `$USER` and give him sudo privileges.
   - Configure & clone dotfiles for the newly created user.
 - **Packaging**:
-  - Install AUR Helper (yay) & download packages defined by `bash $AUR_LIST`.
+  - Install AUR Helper (yay) & download packages defined by `$AUR_LIST`.
 - **Bootloader**
-  - Install refind-efi or grub as bootloader as defined by `bash $BOOT_LDR`.
+  - Install refind-efi or grub as bootloader as defined by `$BOOT_LDR`.
 
 #### Full Installation
-When performing a full installation the script should be executed in an Arch Linux ISO live environment. In addition to performing all the aforementioned configurations the script also setups the mirrorlist based on the given `bash $COUNTRY`, enables multilib support (to install 32-bit packages like steam), installs the basic packages and everything as defined by `bash $PKG_LIST` as well as a basic partition scheme. (MBR or GPT depending on the system)
+When performing a full installation the script should be executed in an Arch Linux ISO live environment. In addition to performing all the aforementioned configurations the script also setups the mirrorlist based on the given `$COUNTRY`, enables multilib support (to install 32-bit packages like steam), installs the basic packages and everything as defined by `$PKG_LIST` as well as a basic partition scheme. (MBR or GPT depending on the system)
 
 ```bash
-# Get the current version of the script
-curl https://raw.githubusercontent.com/aynsoph/dotfiles/master/scripts/deploy.sh -o deploy.sh
+# Get the script & make it executable
+curl -sO https://raw.githubusercontent.com/aynsoph/dotfiles/master/scripts/deploy.sh
+chmod u+x deploy.sh
+
 # Execute
 ./deploy.sh
 ```
