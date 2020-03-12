@@ -6,7 +6,7 @@ set -e
 # COUNTRY         Country used for mirrorlist generation.
 # DOTFILES        Repository containing user dotfiles.
 # PKG_LIST        List of packages to add to base installation. (Included by Default: dhcpcd, git, sudo)
-# HOST            Hostname for the system.
+# HOST            Hostname to set for the new system.
 # USER            Name of sudo user to create.
 # T_ZONE          Timezone of the system. (i.e. '/usr/share/zoneinfo/${T_ZONE}')
 
@@ -23,17 +23,25 @@ T_ZONE="Europe/Berlin"
 # Print usage info && exit
 usage() {
     cat <<-EOF
-	Usage: $(basename "${0}") [-h|--help] [-b|--device BLOCK_DEVICE] [-d|--dotfiles DOTFILES]
-
-	Flags:
-	-h, --help   Show this help message.
+	Usage: $(basename "${0}") [options]
 
 	Options:
 	-b, --device <block_device>    Block device to install to.
+	-c, --configure                Flag for only performing basic system configuration.
 	-d, --dotfiles <repo_url>      Dotfiles repository to install.
+	-h, --help                     Show this help message.
+	-i, --country <country>        ISO 3166-1 alpha-2 country code. e.g. 'DE'.
+	-n, --name <hostname>          Hostname to set for new system.
+	-t, --timezone <timezone>      Timezone of the system. e.g. 'America/New_York'.
+	-u, --user <username>          Name of the sudo user to create.
 
 	Additional configuration options are contained and explained within the script itself.
-	For only setting up dotfiles run this script without any parameters.
+
+	Full installation:
+	For a full installation run this script without any parameters.
+
+	Configuration:
+	To only configure the system run it with '-c' or '--configure' flag.
 	EOF
 
     exit 1
@@ -50,6 +58,7 @@ check_reqs() {
     [ -z "${BOOT_LDR}" ] && _error "You need to choose a boot loader!"
     [ -z "${COUNTRY}" ] && _error "Missing country for generating mirrorlist!"
     [ -z "${USER}" ] && _error "No user was given for the sudo user!"
+    [ ! -f "usr/share/zoneinfo/${T_ZONE}" ] && _error "Unable to find timezone: ${T_ZONE}!"
     [ "${BOOT_LDR}" = "refind-efi" ] && [ ! -d /sys/firmware/efi ] && _error "${BOOT_LDR} isn't BIOS compatible."
 
     # Check required programs
@@ -76,7 +85,7 @@ setup_gpt_scheme() {
 
     # Format
     mkfs.vfat -F32 -n boot "${esp_part}"
-    mkfs.ext4 -L root "${root_part}"
+    mkfs.ext4 -F -L root "${root_part}"
 
     # Mount
     mount "${root_part}" /mnt
@@ -115,10 +124,10 @@ setup_chroot() {
     # Setup mirrorlist
     mirrorlist=$(curl -s "https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=https&use_mirro_status=on")
     printf "${mirrorlist//\#Server/Server}" > /etc/pacman.d/mirrorlist
-    pacman -Su >/dev/null 2>&1
+    pacman -Sy >/dev/null 2>&1
 
     # Install base environment
-    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo ${PKG_LIST}
+    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo ${PKG_LIST} 2>&1
 
     # Gen fstab
     genfstab -U /mnt >> /mnt/etc/fstab
@@ -137,6 +146,12 @@ _error() {
     # Usage _error message
     printf "\e[91mERROR\e[m: ${1}\n" >&2
     exit 2
+}
+
+# Print error
+_info() {
+    # Usage _info message
+    printf "\e[96m${1}\e[m\n" >&2
 }
 
 # Configure timesync & timezone
@@ -204,12 +219,12 @@ _install_aur() {
     local sudo_file
 
     sudo_file="/etc/sudoers.d/10-${1}"
-    printf "${1} ALL=(ALL) NOPASSWD: ALL"
+    printf "${1} ALL=(ALL) NOPASSWD: ALL" > "${sudo_file}"
 
     su - "${1}" <<-EOF
     git clone https://aur.archlinux.org/yay.git ~/yay
     (cd ~/yay; makepkg --noconfirm -si; rm -rf ~/yay)
-    yay --noconfirm -S ${2}
+    yay --noconfirm -S ${2} 2>&1
 	EOF
 }
 
@@ -258,7 +273,8 @@ main() {
     # Cleanup on exit
     trap cleanup EXIT
 
-    # Check for prerequisites
+    # Check for prerequisits
+    _info "Checking prerequisits:(1/4)"
     check_reqs
 
     # Set path to script
@@ -268,15 +284,16 @@ main() {
     [[ "${BLOCK_DEVICE: -1}" =~ ^[0-9]$ ]] && PART_PREFIX="${BLOCK_DEVICE}p" || PART_PREFIX="${BLOCK_DEVICE}"
 
     # Setup partition table for UEFI/BIOS
+    _info "Setting up partitioning scheme:(2/4)"
     [ -d /sys/firmware/efi ] && setup_gpt_scheme || setup_mbr_scheme
 
+    _info "Setting up mirrors & installing packages:(3/4)"
     setup_chroot
+
+    _info "Performing system configuration:(4/4)"
     arch-chroot /mnt /root/deploy.sh -c
 
-    cat <<-EOF >&2
-	$(tput setaf 2)Finished installation:$(tput sgr0)
-	Please remove the ISO, reboot and then set appropriate passwords!
-	EOF
+    printf "\e[92mFinished installation:\e[m\nPlease remove the ISO, reboot and then set appropriate passwords!" >&2
 
     exit 0
 }
@@ -295,6 +312,8 @@ main_configure() {
     _install_aur "${USER}" "${AUR_LIST}"
     _cfg_sudo "${USER}"
     [ "${BOOT_LDR}" = "refind-efi" ] && _install_refind "${PART_PREFIX}" "${BOOT_LDR_REPO}" || _install_grub "${BLOCK_DEVICE}"
+
+    exit 0
 }
 
 while [ $# -gt 0 ]; do
@@ -317,6 +336,26 @@ while [ $# -gt 0 ]; do
             shift
             shift
             ;;
+        -i|--country)
+            COUNTRY="$2"
+            shift
+            shift
+            ;;
+        -n|--name)
+            HOST="$2"
+            shift
+            shift
+            ;;
+        -t|--timezone)
+            T_ZONE="$2"
+            shift
+            shift
+            ;;
+        -u|--username)
+            USER="$2"
+            shift
+            shift
+            ;;
         *)
             _error "Unkown option $1 was given."
             shift
@@ -327,5 +366,9 @@ done
 if [ "${CONF}" = true ]; then
     main_configure "$@"
 else
-    main "$@"
+    printf "All data stored on \"${BLOCK_DEVICE}\" will be overwritten & thus potentially lost forever."
+    read -p "Proceed with installation? [Y/n]" -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        main "$@"
+    fi
 fi
