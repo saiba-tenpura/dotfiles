@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 # BLOCK_DEVICE    Target block device for installation.
 # BOOT_LDR        Bootloader to use. Supported options are BIOS: grub UEFI: grub refind-efi
@@ -14,7 +13,7 @@ BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
-PKG_LIST="alacritty blender bspwm gimp neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd xorg-server xorg-xinit ${BOOT_LDR}"
+PKG_LIST="alacritty blender bspwm gimp neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd ttf-fantasque-sans-mono xorg-server xorg-xinit ${BOOT_LDR}"
 AUR_LIST="polybar"
 HOST="alpha"
 USER="aynsoph"
@@ -58,7 +57,7 @@ check_reqs() {
     [ -z "${BOOT_LDR}" ] && _error "You need to choose a boot loader!"
     [ -z "${COUNTRY}" ] && _error "Missing country for generating mirrorlist!"
     [ -z "${USER}" ] && _error "No user was given for the sudo user!"
-    [ ! -f "usr/share/zoneinfo/${T_ZONE}" ] && _error "Unable to find timezone: ${T_ZONE}!"
+    [ ! -f "/usr/share/zoneinfo/${T_ZONE}" ] && _error "Unable to find timezone: ${T_ZONE}!"
     [ "${BOOT_LDR}" = "refind-efi" ] && [ ! -d /sys/firmware/efi ] && _error "${BOOT_LDR} isn't BIOS compatible."
 
     # Check required programs
@@ -84,8 +83,8 @@ setup_gpt_scheme() {
         set 1 esp on
 
     # Format
-    mkfs.vfat -F32 -n boot "${esp_part}"
-    mkfs.ext4 -F -L root "${root_part}"
+    mkfs.vfat -F32 -n boot "${esp_part}" > /dev/null 2>&1 
+    mkfs.ext4 -F -L root "${root_part}" > /dev/null 2>&1
 
     # Mount
     mount "${root_part}" /mnt
@@ -106,13 +105,13 @@ setup_mbr_scheme() {
         mkpart primary ext4 0% 100%
 
     # Format
-    mkfs.ext4 -F -L root "${root_part}"
+    mkfs.ext4 -F -L root "${root_part}" > /dev/null 2>&1
 
     # Mount
     mount "${root_part}" /mnt
 }
 
-# Install packages, configure env, cleanup
+# Install packages, configure env
 setup_chroot() {
     # Usage: setup_chroot conf_file
     local mirrorlist pac_conf
@@ -127,7 +126,7 @@ setup_chroot() {
     pacman -Sy >/dev/null 2>&1
 
     # Install base environment
-    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo ${PKG_LIST} 2>&1
+    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo ${PKG_LIST} >/dev/null 2>&1
 
     # Gen fstab
     genfstab -U /mnt >> /mnt/etc/fstab
@@ -137,8 +136,8 @@ setup_chroot() {
 
 # Cleanup, umount & reboot
 cleanup() {
-    rm /mnt/root/deploy.sh
-    umount /mnt/boot /mnt
+    rm /mnt/root/deploy.sh 2>/dev/null
+    umount /mnt/boot /mnt 2>/dev/null
 }
 
 # Print error & exit
@@ -169,7 +168,7 @@ _cfg_locale() {
 
     tmp_locale=$(<"/etc/locale.gen")
     printf "${tmp_locals//\#en_US.UTF-8/en_US.UTF-8}\n" > /etc/locale.gen
-    locale-gen
+    locale-gen > /dev/null
 
     printf "LANG=en_US.UTF-8\n" > /etc/locale.conf
 }
@@ -194,7 +193,7 @@ _cfg_network() {
     # Usage: _cfg_network hostname
     printf "${1}\n" > /etc/hostname
     printf "%-12s localhost\n" "127.0.0.1" "::1" > /etc/hosts
-    systemctl enable dhcpcd.service
+    systemctl enable dhcpcd.service > /dev/null
 }
 
 # Configure user with sudo privileges
@@ -223,8 +222,8 @@ _install_aur() {
 
     su - "${1}" <<-EOF
     git clone https://aur.archlinux.org/yay.git ~/yay
-    (cd ~/yay; makepkg --noconfirm -si; rm -rf ~/yay)
-    yay --noconfirm -S ${2} 2>&1
+    (cd ~/yay; makepkg --noconfirm -si > /dev/null 2>&1; rm -rf ~/yay)
+    yay --noconfirm -S ${2} > /dev/null 2>&1
 	EOF
 }
 
@@ -274,7 +273,7 @@ main() {
     trap cleanup EXIT
 
     # Check for prerequisits
-    _info "Checking prerequisits:(1/4)"
+    _info "\nChecking prerequisits:(1/4)"
     check_reqs
 
     # Set path to script
@@ -293,7 +292,7 @@ main() {
     _info "Performing system configuration:(4/4)"
     arch-chroot /mnt /root/deploy.sh -c
 
-    printf "\e[92mFinished installation:\e[m\nPlease remove the ISO, reboot and then set appropriate passwords!" >&2
+    printf "\e[92mFinished installation:\e[m Please remove the ISO, reboot and then set appropriate passwords!\n" >&2
 
     exit 0
 }
@@ -366,7 +365,7 @@ done
 if [ "${CONF}" = true ]; then
     main_configure "$@"
 else
-    printf "All data stored on \"${BLOCK_DEVICE}\" will be overwritten & thus potentially lost forever."
+    printf "\e[91mWARNING:\e[0m All data stored on \e[91m\"${BLOCK_DEVICE}\"\e[0m will be overwritten!\n"
     read -p "Proceed with installation? [Y/n]" -n 1 -r
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         main "$@"
