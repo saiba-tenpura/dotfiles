@@ -13,7 +13,7 @@ BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
-PKG_LIST="alacritty blender bspwm gimp neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd ttf-fantasque-sans-mono xorg-server xorg-xinit ${BOOT_LDR}"
+PKG_LIST="alacritty blender bspwm gimp neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd ttf-fantasque-sans-mono xorg-server xorg-xinit"
 AUR_LIST="polybar"
 HOST="alpha"
 USER="aynsoph"
@@ -30,6 +30,7 @@ usage() {
 	-d, --dotfiles <repo_url>      Dotfiles repository to install.
 	-h, --help                     Show this help message.
 	-i, --country <country>        ISO 3166-1 alpha-2 country code. e.g. 'DE'.
+	-l, --bootloader <boot_loader> Bootloader to use. Supported are either 'grub' or 'refind-efi'
 	-n, --name <hostname>          Hostname to set for new system.
 	-t, --timezone <timezone>      Timezone of the system. e.g. 'America/New_York'.
 	-u, --user <username>          Name of the sudo user to create.
@@ -126,7 +127,7 @@ setup_chroot() {
     pacman -Sy >/dev/null 2>&1
 
     # Install base environment
-    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo ${PKG_LIST} >/dev/null 2>&1
+    pacstrap /mnt base base-devel linux linux-firmware dhcpcd git sudo $PKG_LIST $BOOT_LDR > /dev/null 2>&1
 
     # Gen fstab
     genfstab -U /mnt >> /mnt/etc/fstab
@@ -233,44 +234,59 @@ _cfg_sudo() {
     local sudo_file
 
     sudo_file="/etc/sudoers.d/10-${1}"
-    printf "${1} ALL=(ALL) ALL\n${1} ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/mount,/usr/bin/umount" > "${sudo_file}"
+    printf "${1} ALL=(ALL) ALL\n${1} ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/mount,/usr/bin/umount\n" > "${sudo_file}"
     chmod 440 "${sudo_file}"
 }
 
 # Install rEFInd as bootloader
 _install_refind() {
     # Usage: _install_refind device
-    local cfg uuid
+    local uuid
 
     refind-install
     uuid=$(lsblk -no UUID "${1}2")
 
-    read -r -d '' cfg <<-EOF
+    cat <<-EOF > /boot/EFI/refind/refind.conf
+	extra_kernel_version_strings linux
+
 	menuentry "Arch Linux" {
+	    icon /EFI/refind/icons/os_arch.png
 	    loader /vmlinuz-linux
 	    initrd /initramfs-linux.img
 	    options "rw root=UUID=${uuid}"
 	    submentry "Use fallback initrd" {
 	        initrd /initramfs-linux-fallback.img
 	    }
+	    submenuentry "Boot to terminal" {
+	        add_options "systemd.unit=multi-user.target"
+	    }
 	}
 	EOF
 
-    printf "${cfg}" > /boot/EFI/refind/refind.conf
+    cat <<-EOF > /boot/refind_linux.conf
+	"Boot using default options"    "root=PARTUUID=${uuid} rw add_efi_memmap initrd=/initramfs-%v.img"
+	"Boot using fallback initramfs" "root=PARTUUID=${uuid} rw add_efi_memmap initrd=/initramfs-%v-fallback.img"
+	"Boot to terminal               "root=PARTUUID=${uuid} rw add_efi_memmap initrd=/initramfs-%v.img systemd.unit=multi-user.target"
+	EOF
 }
 
 # Install grub as bootloader
 _install_grub() {
     # Usage: _install_grub device
-    [ -d /sys/firmware/efi ] && grub-install --target=i386-pc "${1}" || \
+    if [ -d /sys/firmware/efi ]; then
+        pacman --noconfirm -S efibootmgr > /dev/null 2>&1
         grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+    else
+        grub-install --target=i386-pc "${1}"
+    fi
+
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 # Perform full installation
 main() {
     # Cleanup on exit
-    trap cleanup EXIT
+    trap cleanup EXIT INT
 
     # Check for prerequisits
     _info "\nChecking prerequisits:(1/4)"
@@ -290,7 +306,7 @@ main() {
     setup_chroot
 
     _info "Performing system configuration:(4/4)"
-    arch-chroot /mnt /root/deploy.sh -c
+    arch-chroot /mnt /root/deploy.sh -c $@
 
     printf "\e[92mFinished installation:\e[m Please remove the ISO, reboot and then set appropriate passwords!\n" >&2
 
@@ -310,10 +326,12 @@ main_configure() {
     _cfg_dotfiles "${USER}" "${DOTFILES}"
     _install_aur "${USER}" "${AUR_LIST}"
     _cfg_sudo "${USER}"
-    [ "${BOOT_LDR}" = "refind-efi" ] && _install_refind "${PART_PREFIX}" "${BOOT_LDR_REPO}" || _install_grub "${BLOCK_DEVICE}"
+    [ "${BOOT_LDR}" = "refind-efi" ] && _install_refind "${PART_PREFIX}" || _install_grub "${BLOCK_DEVICE}"
 
     exit 0
 }
+
+args="$@"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -328,7 +346,6 @@ while [ $# -gt 0 ]; do
         -c|--configure)
             CONF=true
             shift
-            shift
             ;;
         -d|--dotfiles)
             DOTFILES="$2"
@@ -342,6 +359,11 @@ while [ $# -gt 0 ]; do
             ;;
         -n|--name)
             HOST="$2"
+            shift
+            shift
+            ;;
+        -l|--bootloader)
+            BOOT_LDR="$2"
             shift
             shift
             ;;
@@ -363,11 +385,11 @@ while [ $# -gt 0 ]; do
 done
 
 if [ "${CONF}" = true ]; then
-    main_configure "$@"
+    main_configure
 else
     printf "\e[91mWARNING:\e[0m All data stored on \e[91m\"${BLOCK_DEVICE}\"\e[0m will be overwritten!\n"
     read -p "Proceed with installation? [Y/n]" -n 1 -r
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        main "$@"
+    if [ $REPLY = Y ]; then
+        main "${args}"
     fi
 fi

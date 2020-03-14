@@ -7,7 +7,7 @@ dots() {
 }
 
 git clone --bare "${DOTFILES}" $HOME/.dotfiles
-dots checkout 2>&1
+dots checkout > /dev/null 2>&1
 if [ $0 != 0 ]; then
     mkdir -p "$HOME/.dotfiles.bak"
     dots checkout 2>&1 \
