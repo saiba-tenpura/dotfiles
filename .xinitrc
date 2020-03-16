@@ -33,8 +33,8 @@ fi
 session=${1:-bspwm}
 
 killall -q "picom"; sleep 0.5; picom &
-killall -q "polybar"; sleep 0.5; polybar $session &
 exec nitrogen --restore &
+exec ~/.config/polybar/launch.sh "main-${session}" &
 
 case $session in
     *)

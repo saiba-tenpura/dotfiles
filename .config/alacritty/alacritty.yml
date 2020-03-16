@@ -67,23 +67,23 @@ tabspaces: 8
 # Font configuration
 font:
   normal:
-    family: Fantasque Sans Mono
+    family: Hack
     style: Regular
 
   bold:
-    family: Fantasque Sans Mono
+    family: Hack
     style: Bold
 
-  #italic:
-  #  family: Fantasque Sans Mono
-  #  style: Italic
+  italic:
+    family: Hack
+    style: Italic
 
-  #bold_italic:
-  #  family: Fantasque Sans Mono
-  #  style: Bold Italic
+  bold_italic:
+    family: Hack
+    style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

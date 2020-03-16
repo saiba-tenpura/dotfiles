@@ -13,7 +13,7 @@ BLOCK_DEVICE="/dev/sda"
 BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
-PKG_LIST="alacritty blender bspwm gimp neovim nitrogen picom pulseaudio pulseaudio-alsa sxhkd ttf-fantasque-sans-mono xorg-server xorg-xinit"
+PKG_LIST="alacritty blender bspwm gimp neovim nitrogen pamixer picom pulseaudio pulseaudio-alsa sxhkd ttf-fontawesome ttf-hack xorg-server xorg-xinit"
 AUR_LIST="polybar"
 HOST="alpha"
 USER="aynsoph"
@@ -84,7 +84,7 @@ setup_gpt_scheme() {
         set 1 esp on
 
     # Format
-    mkfs.vfat -F32 -n boot "${esp_part}" > /dev/null 2>&1 
+    mkfs.vfat -F32 -n boot "${esp_part}" > /dev/null 2>&1
     mkfs.ext4 -F -L root "${root_part}" > /dev/null 2>&1
 
     # Mount
@@ -388,8 +388,8 @@ if [ "${CONF}" = true ]; then
     main_configure
 else
     printf "\e[91mWARNING:\e[0m All data stored on \e[91m\"${BLOCK_DEVICE}\"\e[0m will be overwritten!\n"
-    read -p "Proceed with installation? [Y/n]" -n 1 -r
-    if [ $REPLY = Y ]; then
+    read -p "Proceed with installation? [Y/n] " -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
         main "${args}"
     fi
 fi
