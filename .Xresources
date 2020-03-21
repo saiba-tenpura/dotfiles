@@ -1,19 +1,28 @@
 ! .Xresources Config
 
-! URxvt
-!! Border
+!! Xft
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+
+!! URxvt
+! Border
 URxvt.borderWidth: 0
 URxvt.internalBorder: 5
 URxvt.externalBorder: 15
 
-!! Font
+! Font
 URxvt.letterSpace: 0
 
-!! Scrollbar
+! Scrollbar
 URxvt.scrollBar: false
 URxvt.scrollstyle: rxvt
 
-!! Settings
+! Settings
 URxvt.buffered: false
 URxvt.skipBuiltinGlyphs: true
 URxvt.lineSpace: 0
@@ -21,5 +30,32 @@ URxvt.saveLines: 327515
 URxvt.iso14755: false
 URxvt.iso14755_2: false
 
-! Xft
-Xft.antialias: true
+!! Colors
+*.background: #121212
+*.foreground: #dfdfdf
+*.cursorColor: #dfdfdf
+
+! Black + DarkGrey
+*.color0: #000000
+*.color8: #121212
+! DarkRed + Red
+*.color1: #96222c
+*.color9: #ad3b46
+! DarkGreen + Green
+*.color2: #93d44f
+*.color10: #c8e7a8
+! DarkYellow + Yellow
+*.color3: #eab93d
+*.color11: #ffc123
+! DarkBlue + Blue
+*.color4: #204a87
+*.color12: #3465a4
+! DarkMagenta + Magenta
+*.color5: #ce5c00
+*.color13: #f57900
+! DarkCyan + Cyan
+*.color6: #89b6e2
+*.color14: #46a4ff
+! LightGrey + White
+*.color7: #cccccc
+*.color15: #ffffff

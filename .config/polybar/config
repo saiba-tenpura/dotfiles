@@ -39,20 +39,25 @@ format-offset =
 [colors]
 ; Init Polybar Theme
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #121212
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #ffb52a
+primary = #96222c
 secondary = #e60053
 alert = #bd2c40
 
+;fade-1 = #a05561
+fade-1 = ${colors.background}
+fade-2 = #ad3b46
+fade-3 = #96222c
+
 [bar/main-bspwm]
 width = 100%
-height = 26
+height = 24
 radius = 0.0
-fixed-cneter = true
+fixed-center = true
 bottom = false
 separator =
 
@@ -60,7 +65,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 2
-line-color = #f00
+;line-color = #f00
 
 wm-restack = bspwm
 override-redirect = true
@@ -68,18 +73,16 @@ override-redirect = true
 border-size = 0
 border-color = #00000000
 
-padding-left = 1
-padding-right = 1
-
 module-margin-left = 0
 module-margin-right = 0
 
 modules-left = bspwm
-modules-right = pulseaudio-tail date
+modules-right = arrow2 pulseaudio-tail arrow3 date
 
 font-0 = Hack:pixelsize=10;2
-font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
+font-1 = Hack:pixelsize=18;3
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
 
 ; Modules
 
@@ -232,10 +235,14 @@ format-disconnected =
 [module/date]
 type = internal/date
 interval = 5
-date = " %a %d %b,"
+date =
+date-alt = " %a %d %b,"
 time = "%H:%M"
+time-alt = "%H:%M"
 format-prefix = " "
 label = "%date% %time% "
+
+format-background = ${colors.fade-3}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -379,10 +386,35 @@ menu-2-1-exec = menu-open-0
 type = custom/script
 exec = ~/.config/polybar/scripts/pulseaudio-tail.sh
 tail = true
-label = "%output% "
+label = "%output%"
 ;click-right = exec pavucontrol &
 click-left = ~/.config/polybar/scripts/pulseaudio-tail.sh --mute &
 scroll-up = ~/.config/polybar/scripts/pulseaudio-tail.sh --up &
 scroll-down = ~/.config/polybar/scripts/pulseaudio-tail.sh --down &
+
+;format-foreground =
+format-background = ${colors.fade-2}
+
+; Arrow Modules
+
+[module/base-arrow]
+type=custom/text
+content = "%{T2} %{T-}"
+content-font = 2
+
+[module/arrow1]
+inherit = module/base-arrow
+content-background = ${colors.background}
+content-foreground = ${colors.fade-1}
+
+[module/arrow2]
+inherit = module/base-arrow
+content-background = ${colors.fade-1}
+content-foreground = ${colors.fade-2}
+
+[module/arrow3]
+inherit = module/base-arrow
+content-background = ${colors.fade-2}
+content-foreground = ${colors.fade-3}
 
 ; vim:ft=dosini
