@@ -1,0 +1,14 @@
+configuration {
+	modi: "window,drun,ssh";
+    width: 40;
+    lines: 10;
+	font: "Hack 10";
+	padding: 10;
+	show-icons: true;
+	terminal: "alacritty";
+    combi-modi: "window,drun,ssh";
+	hide-scrollbar: true;
+	theme: "main";
+}
+
+/* vim:ft=css
