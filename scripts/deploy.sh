@@ -14,7 +14,7 @@ BOOT_LDR="refind-efi"
 COUNTRY="DE"
 DOTFILES="https://github.com/aynsoph/dotfiles"
 PKG_LIST="alacritty blender bspwm gimp neovim nitrogen pamixer picom pulseaudio pulseaudio-alsa rofi sxhkd ttf-fontawesome ttf-hack xorg-server xorg-xinit"
-AUR_LIST="polybar ytop"
+AUR_LIST="betterlockscreen polybar ytop"
 HOST="alpha"
 USER="aynsoph"
 T_ZONE="Europe/Berlin"
@@ -197,10 +197,18 @@ _cfg_network() {
     systemctl enable dhcpcd.service > /dev/null
 }
 
-# Configure user with sudo privileges
+# Add user & autologin
 _cfg_user() {
     # Usage: _cfg_user user
     useradd -m -s /bin/bash "${1}"
+
+    # Autologin
+    mkdir -p /etc/systemd/system/getty@tty1.service.d
+    cat <<-EOF > /etc/systemd/system/getty@tty1.service.d/override.conf
+	[Service]
+	ExecStart=
+	ExecStart=-/usr/bin/agetty -a ${1} --noclear %I \$TERM
+	EOF
 }
 
 # Configure user dotfiles

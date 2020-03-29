@@ -32,6 +32,7 @@ fi
 
 session=${1:-bspwm}
 
+betterlockscreen -l
 killall -q "picom"; sleep 0.5; picom &
 exec nitrogen --restore &
 exec ~/.config/polybar/launch.sh "main-${session}" &
