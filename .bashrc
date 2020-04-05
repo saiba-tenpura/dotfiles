@@ -9,9 +9,9 @@ alias vim='nvim'
 alias ytop='ytop -c ~/.config/ytop/main.json'
 
 # Colors
-red=$(tput setaf 1)
-light_red=$(tput setaf 9)
-reset=$(tput sgr0)
+red="\[$(tput setaf 1)\]"
+light_red="\[$(tput setaf 9)\]"
+reset="\[$(tput sgr0)\]"
 
 # Defaults
 export TERMINAL="alacritty"
@@ -23,7 +23,7 @@ export HISTCONTROL=ignoreboth
 export LESSHISTFILE=/dev/null
 
 # Prompt
-PS1="[\u:\[$red\]\W\[$reset\[] \[$light_red\]\$\[$reset\] "
+PS1="[\u:${light_red}\W${reset}] ${red}\$${reset} "
 
 # Window
 shopt -s checkwinsize
