@@ -1,10 +1,17 @@
+" vim plugins
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'ap/vim-css-color'     " Color preview
+
+call plug#end()
+
 " Backup
 set nobackup
 set noswapfile
 
 " Colors & Fonts
 set t_Co=256
-" colorscheme
+colo demonic
 
 " Indentation
 filetype indent plugin on
@@ -20,17 +27,20 @@ set showmatch               " highlight matching {[()]}
 set noshowmode              " Don"t show vim mode
 
 " Search
+set hlsearch
+set incsearch
 set path+=**                " Search recursively in current dir
 set wildmenu                " Diplay matches in tab list
-set incsearch
-set hlsearch
+
+set wildignore+=.git,.hg,.svn
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
 
 " Statusline
 " :h mode() to see all mode
 let g:currentmode= {
     \ "n"      : "NORMAL ",
     \ "no"     : "N⋅OPERATOR PENDING ",
-    \ "v"      : "V ",
+    \ "v"      : "VISUAL ",
     \ "V"      : "V⋅LINE ",
     \ "\<C-V>" : "V⋅BLOCK ",
     \ "s"      : "SELECT ",
@@ -50,9 +60,9 @@ let g:currentmode= {
 \}
 
 set laststatus=2
-hi User1 ctermfg=15 ctermbg=1
-hi User2 ctermfg=7 ctermbg=234
-hi User3 ctermfg=7 ctermbg=8
+hi User1 ctermfg=white ctermbg=darkred
+hi User2 ctermfg=lightgrey ctermbg=234
+hi User3 ctermfg=lightgrey ctermbg=8
 
 set statusline=
 set statusline+=%<                                   " Truncate line

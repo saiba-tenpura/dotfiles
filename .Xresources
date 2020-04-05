@@ -48,8 +48,8 @@ URxvt.iso14755_2: false
 *.color3: #eab93d
 *.color11: #ffc123
 ! DarkBlue + Blue
-*.color4: #204a87
-*.color12: #3465a4
+*.color4: #295877
+*.color12: #3d82af
 ! DarkMagenta + Magenta
 *.color5: #ce5c00
 *.color13: #f57900
