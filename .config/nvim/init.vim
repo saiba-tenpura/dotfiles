@@ -1,8 +1,6 @@
 " vim plugins
 call plug#begin('~/.local/share/nvim/plugged')
-
 Plug 'ap/vim-css-color'     " Color preview
-
 call plug#end()
 
 " Backup
@@ -11,7 +9,7 @@ set noswapfile
 
 " Colors & Fonts
 set t_Co=256
-colo demonic
+" colo demonic
 
 " Indentation
 filetype indent plugin on
@@ -36,7 +34,7 @@ set wildignore+=.git,.hg,.svn
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
 
 " Statusline
-" :h mode() to see all mode
+" :h mode() to see all modes
 let g:currentmode= {
     \ "n"      : "NORMAL ",
     \ "no"     : "N⋅OPERATOR PENDING ",

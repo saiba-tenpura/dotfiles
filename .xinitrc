@@ -30,15 +30,6 @@ if [ -d /etc/X11/xinit/xinirc.d ]; then
     unset f
 fi
 
-session=${1:-bspwm}
-
-betterlockscreen -l
 killall -q "picom"; sleep 0.5; picom &
-exec nitrogen --restore &
-exec ~/.config/polybar/launch.sh "main-${session}" &
-
-case $session in
-    *)
-        exec $session
-	;;
-esac
+exec ~/.config/polybar/launch.sh "main-bspwm" &
+exec awesome
