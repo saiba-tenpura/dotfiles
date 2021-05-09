@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES="${1:-https://github.com/aynsoph/dotfiles.git}"
+DOTFILES="${1:-https://github.com/saiba-tenpura/dotfiles.git}"
 
 dots() {
     /usr/bin/env git --git-dir=$HOME/.dotfiles --work-tree $HOME $@

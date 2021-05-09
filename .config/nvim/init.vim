@@ -9,7 +9,6 @@ set noswapfile
 
 " Colors & Fonts
 set t_Co=256
-" colo demonic
 
 " Indentation
 filetype indent plugin on
@@ -35,7 +34,7 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
 
 " Statusline
 " :h mode() to see all modes
-let g:currentmode= {
+let g:currentmode = {
     \ "n"      : "NORMAL ",
     \ "no"     : "N⋅OPERATOR PENDING ",
     \ "v"      : "VISUAL ",

@@ -1,61 +1,40 @@
 ! .Xresources Config
 
+!! Colorscheme
+#include ".cache/wal/colors.Xresources"
+
 !! Xft
 Xft.dpi: 96
 Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
 !! URxvt
 ! Border
-URxvt.borderWidth: 0
-URxvt.internalBorder: 5
-URxvt.externalBorder: 15
+URxvt.internalBorder: 24
 
 ! Font
-URxvt.letterSpace: 0
+URxvt.font: xft:Iosevka:style=Regular:size=10
+URxvt.boldFont: xft:Iosevka:style=Bold:size=10
+URxvt.italicFont: xft:Iosevka:style=Italic:size=10
+URxvt.boldItalicFont: xft:Iosevka:style=Bold Italic:size=10
 
 ! Scrollbar
 URxvt.scrollBar: false
-URxvt.scrollstyle: rxvt
+URxvt.scrollBar_right: false
 
 ! Settings
-URxvt.buffered: false
-URxvt.skipBuiltinGlyphs: true
+URxvt.letterSpace: 0
 URxvt.lineSpace: 0
-URxvt.saveLines: 327515
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveLine: 8096
+URxvt.urgentOnBell: true
+URxvt.depth: 24
 URxvt.iso14755: false
 URxvt.iso14755_2: false
 
-!! Colors
-*.background: #121212
-*.foreground: #dfdfdf
-*.cursorColor: #dfdfdf
-
-! Black + DarkGrey
-*.color0: #000000
-*.color8: #121212
-! DarkRed + Red
-*.color1: #96222c
-*.color9: #ad3b46
-! DarkGreen + Green
-*.color2: #93d44f
-*.color10: #c8e7a8
-! DarkYellow + Yellow
-*.color3: #eab93d
-*.color11: #ffc123
-! DarkBlue + Blue
-*.color4: #295877
-*.color12: #3d82af
-! DarkMagenta + Magenta
-*.color5: #ce5c00
-*.color13: #f57900
-! DarkCyan + Cyan
-*.color6: #89b6e2
-*.color14: #46a4ff
-! LightGrey + White
-*.color7: #cccccc
-*.color15: #ffffff
+! Copy & Paste
+URxvt.perl-ext-comon: ...,clipboard,...
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste

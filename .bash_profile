@@ -1,6 +1,8 @@
+#
 # ~/.bash_profile
+#
 
-# Load bash configs
+# Load bash config
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Autostart
