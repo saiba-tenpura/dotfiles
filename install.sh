@@ -8,7 +8,7 @@ dots() {
 
 git clone --bare "${DOTFILES}" $HOME/.dotfiles
 dots checkout > /dev/null 2>&1
-if [ $0 != 0 ]; then
+if [ $? != 0 ]; then
     mkdir -p "$HOME/.dotfiles.bak"
     dots checkout 2>&1 \
         | grep -P '^\s+[\w.]' \
@@ -16,4 +16,5 @@ if [ $0 != 0 ]; then
         | xargs -I{} sh -c 'cp -r --parents "{}" "$HOME/.dotfiles.bak/" && rm -rf "{}"'
     dots checkout
 fi
+
 dots config --local status.showUntrackedFiles no

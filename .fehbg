@@ -1,2 +1,2 @@
-#!/bin/sh
-feh --no-fehbg --bg-scale '/home/tenpura/wallpapers/cyber-city.png' 
+#!/usr/bin/env bash
+feh --no-fehbg --bg-scale '~/wallpapers/current'
