@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 NOTIFY_ICON=/usr/share/icons/Papirus/32x32/apps/system-software-update.svg
 
-get_total_updates() { UPDATES=$($SCRIPT_DIR/checkupdates 2>/dev/null | wc -l); }
+get_total_updates() { UPDATES=$(~/.config/polybar/docky/scripts/checkupdates 2>/dev/null | wc -l); }
 
 while true; do
     get_total_updates

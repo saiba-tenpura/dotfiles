@@ -36,9 +36,16 @@ window {
 
 prompt {
     enabled: 						true;
-	padding: 						0px;
+    padding:                        0px 0px 0px 5px;
 	background-color: 				@al;
 	text-color: 					@bar;
+}
+
+textbox-prompt-colon {
+	background-color: 				@al;
+	text-color: 					@bar;
+	expand: false;
+	str: "";
 	font:							"feather 12";
 }
 
@@ -54,7 +61,7 @@ entry {
 }
 
 inputbar {
-	children: 						[ prompt, entry ];
+	children: 						[ textbox-prompt-colon, prompt ];
     background-color:               @ac;
     text-color:                     @bar;
     expand:                         false;
@@ -91,15 +98,19 @@ element {
     text-color:                     @fg;
     orientation:                    horizontal;
     border-radius:                  0px;
-    padding:                        10px;
+    padding:                        10px 10px 10px -17px;
 }
 
 element-icon {
+    background-color:               transparent;
+    text-color:               		inherit;
     size:                           24px;
     border:                         0px;
 }
 
 element-text {
+    background-color:               transparent;
+    text-color:               		inherit;
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0.5;
