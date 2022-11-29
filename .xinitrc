@@ -30,4 +30,5 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
     unset f
 fi
 
+[ ! -d $HOME/.cache/betterlockscreen/current ] && betterlockscreen -u $HOME/wallpapers/current
 exec i3
