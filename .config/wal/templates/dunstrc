@@ -2,7 +2,7 @@
     ### Geometry ###
 
     # Constant width:
-    width = 200
+    width = 250
 
     # Offset from the origin
     offset = 10x10
