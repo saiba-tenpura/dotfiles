@@ -38,6 +38,9 @@ export LESSHISTFILE=/dev/null
 # Window
 shopt -s checkwinsize
 
+# NNN
+export NNN_OPTS="H"
+
 # Custom prompt
 _YELLOW="\[$(tput setaf 3)\]"
 _GREEN="\[$(tput setaf 2)\]"
