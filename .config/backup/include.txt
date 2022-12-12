@@ -1,8 +1,0 @@
-/home/saiba/.config/backup/.restic-password
-/home/saiba/.mozilla/firefox/*.default*
-/home/saiba/.ssh
-/home/saiba/.thunderbird/*.default*
-/home/saiba/.ts3client/{chats,identity.ini,settings.db,urls.db}
-/home/saiba/Documents
-/home/saiba/Downloads
-/storage/virtual-machines/ubuntu-22.04
