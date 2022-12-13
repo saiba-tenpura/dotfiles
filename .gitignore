@@ -1,5 +1,9 @@
 .dotfiles
 
+# User Files
+Documents
+Downloads
+
 # Security
 .gnupg/*
 !.gnupg/*.conf
@@ -11,14 +15,17 @@
 
 # Misc commonly generated files
 .bash_history
-.zsh_history
 .dbus/
 .lesshst
+.mozilla/
 .python_history
+.thunderbird/
+.ts3client/
 .subverstion/
 .wine/
 .Xauthority
 .xsession-errors
+.zsh_history
 
 # Misc junk files
 *.bak

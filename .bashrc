@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-randpw() {
+pwgen() {
     < /dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c${1:-32};
     echo;
 }
