@@ -52,6 +52,8 @@ setup() {
     read -s password_confirmation
     [[ "${password}" != "${password_confirmation}" ]] && error "Passwords do not match!"
 
+    CONFIG_DIR=$(dirname "$RESTIC_PASSWORD_FILE")
+    [ ! -d "${CONFIG_DIR}" ] && mkdir -p "${CONFIG_DIR}"
     echo "$password" > "$RESTIC_PASSWORD_FILE"
     printf 'Init new restic repository!\n'
     mkdir -p "$RESTIC_REPOSITORY"
