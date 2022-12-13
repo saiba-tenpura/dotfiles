@@ -31,4 +31,5 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 [ ! -d $HOME/.cache/betterlockscreen/current ] && betterlockscreen -u $HOME/wallpapers/current
+udiskie &
 exec i3
