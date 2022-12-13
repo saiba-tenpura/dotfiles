@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-export RESTIC_REPOSITORY="/storage/restic-repo"
+export RESTIC_REPOSITORY="/storage/hdd/restic-repo"
 export RESTIC_PASSWORD_FILE="/root/.config/.restic"
 FILES=(
-    /home/tenpura/.mozilla/firefox/*.default*
-    /home/tenpura/.ssh
-    /home/tenpura/.thunderbird/*.default*
-    /home/tenpura/.ts3client/{chats,identity.ini,settings.db,urls.db}
-    /home/tenpura/Documents
-    /home/tenpura/Downloads
-    /storage/virtual-machines/ubuntu-22.04
+    /home/saiba/.minecraft/saves
+    /home/saiba/.mozilla/firefox/*.default*
+    /home/saiba/.ssh
+    /home/saiba/.thunderbird/*.default*
+    /home/saiba/.ts3client/{chats,identity.ini,settings.db,urls.db}
+    /home/saiba/Documents
+    /home/saiba/Downloads
+    /storage/hdd/virtual-machines/
 )
 
 usage() {
