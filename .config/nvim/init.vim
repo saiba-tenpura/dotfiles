@@ -7,6 +7,9 @@ call plug#end()
 set nobackup
 set noswapfile
 
+" Clipboard
+set clipboard=unnamedplus
+
 " Colors & Fonts
 set t_Co=256
 
