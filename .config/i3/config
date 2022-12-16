@@ -15,6 +15,10 @@ floating_modifier $mod
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 1
 
+# Steam
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="^Steam - News$"] floating enable
+
 # Colors
 set_from_resource $darkred color1 #4c7899
 
@@ -183,4 +187,5 @@ exec --no-startup-id dunst &
 exec --no-startup-id wal -R &
 exec --no-startup-id picom &
 exec --no-startup-id $HOME/.fehbg &
+exec --no-startup-id steam-runtime -nochatui -nofriendsui -silent &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --docky &
