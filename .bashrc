@@ -14,7 +14,7 @@ pwgen() {
 (cat ~/.cache/wal/sequences &)
 
 # Support for TTYs
-source ~/.cache/wal/colors-tty.sh
+. ~/.cache/wal/colors-tty.sh
 
 # Aliase
 alias diff='diff --color=auto'
@@ -39,7 +39,7 @@ export LESSHISTFILE=/dev/null
 shopt -s checkwinsize
 
 # NNN
-export NNN_OPTS="H"
+. ~/.config/nnn/nnn.sh
 
 # Custom prompt
 _YELLOW="\[$(tput setaf 3)\]"
@@ -47,3 +47,4 @@ _GREEN="\[$(tput setaf 2)\]"
 _MAGENTA="\[$(tput setaf 5)\]"
 _RESET="\[$(tput sgr0)\]"
 PS1="\u${_YELLOW}@${_MAGENTA}\h${_RESET}: ${_GREEN}\W${_RESET} "
+
