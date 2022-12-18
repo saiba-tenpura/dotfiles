@@ -30,6 +30,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
     unset f
 fi
 
+# Rebuild lockscreen cache if missing
 [ ! -d $HOME/.cache/betterlockscreen/current ] && betterlockscreen -u $HOME/wallpapers/current
+
 udiskie &
+xrandr --output DisplayPort-2 --mode 1920x1080 --rate 144
 exec i3
