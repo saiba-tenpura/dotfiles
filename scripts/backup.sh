@@ -36,7 +36,8 @@ check_root() {
 }
 
 run() {
-    restic backup -vv --tag $(hostname -s) $@
+    HOSTNAME=$(uname -n)
+    restic backup -vv --tag "${HOSTNAME}" $@
     restic forget --keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 24 --prune
     restic check | tee -a /var/log/restic.log
 
@@ -62,7 +63,7 @@ setup() {
     printf 'Setup crontab!\n'
     SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
     SCRIPT_NAME="$(basename $0)"
-    echo "30 9 * * * root ${SCRIPT_DIR}/${SCRIPT_NAME} -r" > /etc/cron.d/restic
+    echo "0 12 * * * root ${SCRIPT_DIR}/${SCRIPT_NAME} -r" > /etc/cron.d/restic
 
     exit 0
 }
