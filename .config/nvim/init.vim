@@ -62,7 +62,6 @@ let g:currentmode = {
 set laststatus=2
 hi User1 ctermfg=white ctermbg=darkred
 hi User2 ctermfg=lightgrey ctermbg=234
-hi User3 ctermfg=lightgrey ctermbg=8
 
 set statusline=
 set statusline+=%<                                   " Truncate line
@@ -71,7 +70,6 @@ set statusline+=\ %{g:currentmode[mode()]}           " Current mode
 set statusline+=%2*
 set statusline+=\ %f                                 " Relative path
 set statusline+=\ %h%m%r                             " Help, modifiable, readonly
-set statusline+=%3*
 set statusline+=\ %=                                 " Shift to right-side
 set statusline+=%2*
 set statusline+=\ %y                                 " Filetype
