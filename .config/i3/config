@@ -186,6 +186,6 @@ exec --no-startup-id dunst &
 exec --no-startup-id wal -R &
 exec --no-startup-id picom &
 exec --no-startup-id $HOME/.fehbg &
-# exec --no-startup-id steam-runtime -nochatui -nofriendsui -silent &
+exec --no-startup-id steam-sceensaver-fix-runtime -nochatui -nofriendsui -silent &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --docky &
 exec_always --no-startup-id xss-lock -- betterlockscreen -l blur -- --nofork &
