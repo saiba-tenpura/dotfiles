@@ -63,7 +63,10 @@ setup() {
     printf 'Setup crontab!\n'
     SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
     SCRIPT_NAME="$(basename $0)"
-    echo "0 12 * * * root ${SCRIPT_DIR}/${SCRIPT_NAME} -r" > /etc/cron.d/restic
+	cat <<-EOF >> /etc/cron.d/restic
+	30 10 * * * root ${SCRIPT_DIR}/${SCRIPT_NAME} -r
+	30 20 * * * root ${SCRIPT_DIR}/${SCRIPT_NAME} -r
+	EOF
 
     exit 0
 }
