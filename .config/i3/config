@@ -183,6 +183,7 @@ bindsym $mod+r mode "resize"
 # Startup Applications
 exec --no-startup-id betterlockscreen -l blur &
 exec --no-startup-id dunst &
+exec --no-startup-id mpris-proxy &
 exec --no-startup-id wal -R &
 exec --no-startup-id picom &
 exec --no-startup-id $HOME/.fehbg &
