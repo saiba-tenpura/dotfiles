@@ -1,6 +1,9 @@
 " vim plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'ap/vim-css-color'     " Color preview
+Plug 'ap/vim-css-color'                                         " Color preview
+Plug 'nvim-lua/plenary.nvim'                                    " Lua function library (required by telescope)
+Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}          " Extendable fuzzy finder
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " Backup
@@ -12,6 +15,10 @@ set clipboard=unnamedplus
 
 " Colors & Fonts
 set t_Co=256
+
+" Custom key bindings
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 
 " Indentation
 filetype indent plugin on
@@ -25,6 +32,10 @@ set number
 set encoding=utf-8
 set showmatch               " highlight matching {[()]}
 set noshowmode              " Don"t show vim mode
+
+" Plugin
+" Workaround for: https://github.com/nvim-telescope/telescope.nvim/issues/2145
+hi NormalFloat ctermfg=LightGrey
 
 " Search
 set hlsearch
@@ -78,3 +89,4 @@ set statusline+=\ %1*
 set statusline+=\ %l:%c                              " Line & Column
 set statusline+=\ %P                                 " Percentage
 set statusline+=\ %*
+
