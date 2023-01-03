@@ -17,8 +17,18 @@ set clipboard=unnamedplus
 set t_Co=256
 
 " Custom key bindings
+" move lines with Ctrl + J/K
+nnoremap <C-j> :m +1<cr>
+nnoremap <C-k> :m -2<cr>
+inoremap <C-j> <Esc>:m +1<cr>gi
+inoremap <C-k> <Esc>:m -2<cr>gi
+vnoremap <C-j> :m '>+1<cr>gvgv
+vnoremap <C-k> :m '<-2<cr>gvgv
+
+" Telescope shortcuts
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>lg <cmd>Telescope live_grep<cr>
+nnoremap <leader>gf <cmd>Telescope git_files<cr>
 
 " Indentation
 filetype indent plugin on
