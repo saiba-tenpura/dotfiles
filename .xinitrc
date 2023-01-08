@@ -36,5 +36,5 @@ fi
 udiskie &
 xset s 300 300
 xset dpms 300 450 600
-xrandr --output DisplayPort-2 --mode 1920x1080 --rate 144
+xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144
 exec i3
