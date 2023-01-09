@@ -27,14 +27,14 @@ URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
-URxvt.saveLine: 24288
+URxvt.saveLines: 24288
 URxvt.urgentOnBell: true
 URxvt.depth: 24
 URxvt.iso14755: false
 URxvt.iso14755_2: false
 
 ! Copy & Paste
-URxvt.perl-ext-comon: ...,clipboard,...
+URxvt.perl-ext-comon: default,clipboard
 URxvt.clipboard.autocopy: true
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
