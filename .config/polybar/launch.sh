@@ -10,7 +10,18 @@ launch_bar() {
 	# Wait until the processes have been shut down
 	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-	# Launch the bar
+    # Launch bar on each monitor
+    if type "xrandr"; then
+        for monitor in $(xrandr -q | grep " connected" | cut -d" " -f1); do
+            MONITOR=$monitor launch_instance
+        done
+    else
+        launch_instance
+    fi
+}
+
+launch_instance() {
+	# Launch an instance
 	if [[ "$style" == "hack" || "$style" == "cuts" ]]; then
 		polybar -q top -c "$dir/$style/config.ini" &
 		polybar -q bottom -c "$dir/$style/config.ini" &
