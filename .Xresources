@@ -12,11 +12,21 @@ Xft.lcdfilter: lcdfilter
 ! Border
 URxvt.internalBorder: 24
 
+! Copy & Paste
+URxvt.perl-ext-comon: default,clipboard
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+
 ! Font
 URxvt.font: xft:Iosevka:style=Regular:size=10
 URxvt.boldFont: xft:Iosevka:style=Bold:size=10
 URxvt.italicFont: xft:Iosevka:style=Italic:size=10
 URxvt.boldItalicFont: xft:Iosevka:style=Bold Italic:size=10
+
+! Geometry
+! Temporary workaround for scaling issue
+URxvt.geometry: 400x400
 
 ! Scrollbar
 URxvt.scrollBar: false
@@ -33,8 +43,3 @@ URxvt.depth: 24
 URxvt.iso14755: false
 URxvt.iso14755_2: false
 
-! Copy & Paste
-URxvt.perl-ext-comon: default,clipboard
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
