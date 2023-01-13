@@ -3,26 +3,30 @@
 ## Introduction
 This repository contains my personal configuration files (aka. **dotfiles**).
 
-* *OS:* Arch Linux
-* *WM:* i3
-* *Bar:* polybar
-* *Compositor:* picom
-* *Clipboard Manager:* xclip
-* *Launcher:* rofi
-* *Lockscreen:* betterlockscreen
-* *Terminal:* urxvt
-* *Editor:* Neovim
-* *PDF Reader:* Zathura
-* *File Browser:* nnn
-* *Notification daemon:* dunst
+* **OS:** Arch Linux
+* **WM:** i3
+* **Bar:** polybar
+* **Compositor:** picom
+* **Clipboard Manager:** xclip
+* **Editor:** neovim
+* **File Browser:** nnn
+* **Launcher:** rofi
+* **Lockscreen:** betterlockscreen
+* **Notification daemon:** dunst
+* **PDF Viewer:** zathura
+* **Terminal:** urxvt
 
 ## Installation
-*Disclaimer:* The install script will copy dotfiles which would need to overwritten to the .dotfiles.bak directory. In any case you should always have a backup or at least try it with a newly created user first. Just in case something goes wrong.
+*Disclaimer:* The install script will copy dotfiles which would overwritten to the .dotfiles.bak directory. In any case you should always have a backup or at least try it with a newly created user first. Just in case something goes wrong.
 
-Download the install script from this repository, make executeable and run it.
+The dotfiles are managed via a bare git repository.
 ```bash
+# Download install script from this repository
 curl -sO "https://raw.githubusercontent.com/saiba-tenpura/dotfiles/master/install.sh"
+
+# Make the script executable
 chmod 744 install.sh
+
+# Run the script
 ./install.sh
 ```
-
