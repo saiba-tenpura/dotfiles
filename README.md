@@ -6,6 +6,7 @@ This repository contains my personal configuration files (aka. **dotfiles**).
 * **OS:** Arch Linux
 * **WM:** i3
 * **Bar:** polybar
+* **Color Temperature Tool:** redshift
 * **Compositor:** picom
 * **Clipboard Manager:** xclip
 * **Editor:** neovim
