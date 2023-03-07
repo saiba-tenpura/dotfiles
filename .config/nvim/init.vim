@@ -56,6 +56,10 @@ set wildmenu                " Diplay matches in tab list
 set wildignore+=.git,.hg,.svn
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
 
+" Splits
+set splitbelow
+set splitright
+
 " Statusline
 " :h mode() to see all modes
 let g:currentmode = {
