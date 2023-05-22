@@ -3,6 +3,7 @@
 # User Files
 Documents
 Downloads
+Games
 
 # Security
 .gnupg/*
@@ -18,6 +19,7 @@ Downloads
 .dbus/
 .lesshst
 .local/
+.minecraft/
 .mozilla/
 .python_history
 .thunderbird/
