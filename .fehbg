@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-feh --no-fehbg --bg-scale '~/wallpapers/current'
+feh --no-fehbg --bg-fill '/home/saiba/wallpapers/current.png'
