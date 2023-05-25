@@ -1,9 +1,16 @@
 {
     "layer": "top",
     "position": "top",
+    "mod": "dock",
     "modules-left": [],
     "modules-center": [],
-    "modules-right": ["pulseaudio", "battery", "battery#bat2", "clock"],
+    "modules-right": [
+        "battery",
+        "battery#bat2",
+        "pulseaudio",
+        "clock",
+        "network"
+    ],
     // Modules configuration
     "clock": {
         "timezone": "Europe/Berlin",
@@ -12,8 +19,8 @@
     },
     "battery": {
         "states": {
-            "warning": 30,
-            "critical": 15
+            "warning": 50,
+            "critical": 20
         },
         "format": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
@@ -24,8 +31,16 @@
     "battery#bat2": {
         "bat": "BAT2"
     },
+    "network": {
+        // "interface": "wlan0",
+        "format-wifi": "",
+        "format-ethernet": "",
+        "format-disconnected": "⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr} "
+    },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
+        "scroll-step": 5, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
