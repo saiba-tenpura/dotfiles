@@ -4,6 +4,7 @@
     "mod": "dock",
     "margin": "10px",
     "modules-left": [
+        "custom/wofi",
         "wlr/workspaces",
     ],
     "modules-center": [
@@ -15,11 +16,12 @@
         "custom/updates",
         "pulseaudio",
         "network",
+        "custom/power_btn"
     ],
     // Modules configuration
     "clock": {
         "format": " {:%I:%M %p}",
-        "format-alt": "{:%d-%m-%Y}",
+        "format-alt": "{:%d.%m.%Y}",
         "timezone": "Europe/Berlin",
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
     },
@@ -74,10 +76,20 @@
         "on-click": "activate",
         "sort-by-numbers": true,
     },
+    "custom/power_btn": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
     "custom/updates": {
-       "exec": "yay -Qua | wc -l",
-       "format": " {}",
-       "interval": 7200,
+        "exec": "yay -Qua | wc -l",
+        "format": " {}",
+        "interval": 7200,
+    },
+    "custom/wofi": {
+        "format": "",
+        "on-click": "wofi",
+        "tooltip": false
     }
 }
 
