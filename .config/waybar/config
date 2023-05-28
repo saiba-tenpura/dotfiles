@@ -31,7 +31,7 @@
             "critical": 20
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
         "format-icons": ["", "", "", "", ""],
@@ -42,23 +42,23 @@
     "network": {
         // "interface": "wlan0",
         "format-wifi": "",
-        "format-ethernet": "",
+        "format-ethernet": "󰈀",
         "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format": "{ifname} via {gwaddr}",
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟  {format_source}",
         "format-source": " {volume}%",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "󰋎",
             "phone": "",
             "portable": "",
             "car": "",
@@ -82,12 +82,12 @@
         "tooltip": false
     },
     "custom/updates": {
-        "exec": "yay -Qua | wc -l",
-        "format": " {}",
+        "exec": "(yay -Qua) | wc -l",
+        "format": "󰏗 {}",
         "interval": 7200,
     },
     "custom/wofi": {
-        "format": "",
+        "format": "",
         "on-click": "wofi",
         "tooltip": false
     }
