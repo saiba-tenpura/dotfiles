@@ -88,7 +88,7 @@
     },
     "custom/wofi": {
         "format": "",
-        "on-click": "wofi",
+        "on-click": "wofi -i --show drun -C ~/.cache/wal/colors",
         "tooltip": false
     }
 }
