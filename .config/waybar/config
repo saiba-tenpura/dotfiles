@@ -78,7 +78,7 @@
     },
     "custom/power_btn": {
         "format": "",
-        "on-click": "wlogout",
+        "on-click": "wlogout -b 4 -T 300 -B 300",
         "tooltip": false
     },
     "custom/updates": {
