@@ -1,0 +1,40 @@
+* {{
+	background-image: none;
+    font-weight: bold;
+}}
+
+window {{
+	background-color: rgba({background.rgb}, 0.7);
+}}
+
+button {{
+	background-color: {background};
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+    color: {foreground};
+    margin: 5px;
+}}
+
+button:focus, button:active, button:hover {{
+    border: 2px solid {color1};
+    color: {color1};
+	outline-style: none;
+}}
+
+#lock {{
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}}
+
+#shutdown {{
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+}}
+
+#reboot {{
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}}
+
+#suspend {{
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+}}
+

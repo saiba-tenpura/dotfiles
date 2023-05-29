@@ -8,6 +8,14 @@ if [ -e ~/.config/hypr/wal.sh ]; then
     ~/.config/hypr/wal.sh
 fi
 
+if [ -e ~/.config/waybar/wal.sh ]; then
+    ~/.config/waybar/wal.sh
+fi
+
+if [ -e ~/.config/wlogout/wal.sh ]; then
+    ~/.config/wlogout/wal.sh
+fi
+
 if [ -e ~/.config/zathura/wal.sh ]; then
     ~/.config/zathura/wal.sh
 fi
