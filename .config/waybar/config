@@ -82,9 +82,9 @@
         "tooltip": false
     },
     "custom/updates": {
-        "exec": "(yay -Qua) | wc -l",
+        "exec": "yay -Qu | wc -l",
         "format": "󰏗 {}",
-        "interval": 7200,
+        "interval": 3600,
     },
     "custom/wofi": {
         "format": "",
