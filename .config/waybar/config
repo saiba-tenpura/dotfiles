@@ -11,33 +11,42 @@
         "clock",
     ],
     "modules-right": [
-        "battery",
-        "battery#bat2",
         "custom/updates",
+        "battery",
+        "battery#bat1",
         "pulseaudio",
         "network",
         "custom/power_btn"
     ],
     // Modules configuration
     "clock": {
-        "format": " {:%I:%M %p}",
+        "format": "  {:%I:%M %p}",
         "format-alt": "{:%d.%m.%Y}",
         "timezone": "Europe/Berlin",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
     },
     "battery": {
         "states": {
             "warning": 50,
             "critical": 20
         },
-        "format": "{icon} {capacity}%",
+        "format": "{icon}  {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}  {time}",
+        "format-icons": ["", "", "", "", ""],
+    },
+    "battery#bat1": {
+        "bat": "BAT1",
+        "states": {
+            "warning": 50,
+            "critical": 20
+        },
+        "format": "{icon}  {capacity}%",
         "format-charging": "󰂄 {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
         "format-icons": ["", "", "", "", ""],
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
     },
     "network": {
         // "interface": "wlan0",
