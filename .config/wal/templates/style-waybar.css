@@ -1,7 +1,6 @@
 * {{
     font-family: "IosevkaTerm Nerd Font", Helvetica, Arial, sans-serif;
     font-size: 12px;
-    font-weight: bold;
 }}
 
 window#waybar {{
@@ -37,42 +36,37 @@ window#waybar {{
     padding-left: 0;
 }}
 
-/* ToDo */
-
 #workspaces button {{
-    padding: 0 5px;
     background-color: transparent;
     color: #ffffff;
+    padding: 0 5px;
 }}
 
 #workspaces button:hover {{
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba({background.rgb}, 0.2);
 }}
 
 #workspaces button.focused {{
-    background-color: #64727D;
+    color: #64727D;
     box-shadow: inset 0 -3px #ffffff;
 }}
 
 #workspaces button.urgent {{
-    background-color: #eb4d4b;
+    color: #eb4d4b;
 }}
 
 #battery.charging, #battery.plugged {{
-    color: #ffffff;
-    background-color: #26A65B;
+    color: #26A65B;
 }}
 
 @keyframes blink {{
     to {{
-        background-color: #ffffff;
-        color: #000000;
+        color: #ffffff;
     }}
 }}
 
 #battery.critical:not(.charging) {{
-    background-color: #f53c3c;
-    color: #ffffff;
+    color: #f53c3c;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -85,7 +79,7 @@ label:focus {{
 }}
 
 #network.disconnected {{
-    background-color: #f53c3c;
+    color: #f53c3c;
 }}
 
 /* Borders */
