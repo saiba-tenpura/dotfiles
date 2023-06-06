@@ -97,7 +97,7 @@
     },
     "custom/wofi": {
         "format": "",
-        "on-click": "wofi -i --show drun -C ~/.cache/wal/colors",
+        "on-click": "wofi --show drun -C ~/.cache/wal/colors",
         "tooltip": false
     }
 }

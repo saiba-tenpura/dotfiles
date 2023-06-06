@@ -1,0 +1,12 @@
+# Display images in menu
+allow_images=true
+
+# Use the dark GTK theme if available
+gtk_dark=true
+
+# Ignore case for search 
+insensitive=true
+
+# Hide submenu options
+no_actions=true
+
