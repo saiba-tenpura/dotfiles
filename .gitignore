@@ -1,6 +1,7 @@
 .dotfiles
 
 # User Files
+Desktop
 Documents
 Downloads
 Games
@@ -17,15 +18,20 @@ Games
 # Misc commonly generated files
 .bash_history
 .dbus/
+.debug/
 .lesshst
 .local/
 .minecraft/
 .mozilla/
+.npm/
+.pki/
 .python_history
 .thunderbird/
 .ts3client/
 .subverstion/
 .steam/
+.steampath
+.steampid
 .wine/
 .Xauthority
 .xsession-errors
