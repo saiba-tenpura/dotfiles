@@ -63,10 +63,6 @@ set encoding=utf-8
 set showmatch               " highlight matching {[()]}
 set noshowmode              " Don"t show vim mode
 
-" Plugin
-" Workaround for: https://github.com/nvim-telescope/telescope.nvim/issues/2145
-hi NormalFloat ctermfg=LightGrey
-
 " Search
 set hlsearch
 set incsearch
@@ -79,6 +75,8 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
 " Splits
 set splitbelow
 set splitright
+
+" Styling
 
 " Statusline
 " :h mode() to see all modes
@@ -106,7 +104,7 @@ let g:currentmode = {
 
 set laststatus=2
 hi User1 ctermfg=white ctermbg=darkred
-hi User2 ctermfg=lightgrey ctermbg=234
+hi User2 ctermfg=lightgray ctermbg=234
 
 set statusline=
 set statusline+=%<                                   " Truncate line
@@ -123,4 +121,10 @@ set statusline+=\ %1*
 set statusline+=\ %l:%c                              " Line & Column
 set statusline+=\ %P                                 " Percentage
 set statusline+=\ %*
+
+" Highlights
+hi! link SignColumn Normal
+
+" Autocomplete menu
+hi PMenu ctermfg=lightgray ctermbg=234
 
