@@ -21,6 +21,9 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
+
+" Miscellanous
+Plug 'mbbill/undotree'
 call plug#end()
 
 " Include lua files
