@@ -1,5 +1,5 @@
-" vim plugins
-call plug#begin('~/.local/share/nvim/plugged')
+" Plugins
+call plug#begin()
 " Color preview
 Plug 'ap/vim-css-color'
 
@@ -29,16 +29,6 @@ call plug#end()
 " Include lua files
 lua require('saiba')
 
-" Backup
-set nobackup
-set noswapfile
-
-" Clipboard
-set clipboard=unnamedplus
-
-" Colors & Fonts
-set t_Co=256
-
 " Custom key bindings
 " move lines with Ctrl + J/K
 nnoremap <C-j> :m +1<cr>
@@ -52,34 +42,6 @@ vnoremap <C-k> :m '<-2<cr>gvgv
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>lg <cmd>Telescope live_grep<cr>
 nnoremap <leader>gf <cmd>Telescope git_files<cr>
-
-" Indentation
-filetype indent plugin on
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" UI
-syntax enable
-set number
-set encoding=utf-8
-set showmatch               " highlight matching {[()]}
-set noshowmode              " Don"t show vim mode
-
-" Search
-set hlsearch
-set incsearch
-set path+=**                " Search recursively in current dir
-set wildmenu                " Diplay matches in tab list
-
-set wildignore+=.git,.hg,.svn
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
-
-" Splits
-set splitbelow
-set splitright
-
-" Styling
 
 " Statusline
 " :h mode() to see all modes
@@ -130,4 +92,3 @@ hi! link SignColumn Normal
 
 " Autocomplete menu
 hi PMenu ctermfg=lightgray ctermbg=234
-
