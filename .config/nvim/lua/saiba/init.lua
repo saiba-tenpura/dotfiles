@@ -1,3 +1,4 @@
+require 'saiba.keymaps'
 require 'saiba.lsp'
 require 'saiba.options'
 require 'saiba.treesitter'
