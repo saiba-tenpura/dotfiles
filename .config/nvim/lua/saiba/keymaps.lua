@@ -7,6 +7,18 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal Mode --
+-- Window Navigation
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- Resize with arrow keys
+keymap("n", "<C-Up>", ":resize +2<CR>", opts)
+keymap("n", "<C-Down>", ":resize -2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
 -- Move line up/down with alt + j/k
 keymap("n", "<A-j>", ":m +1<CR>", opts)
 keymap("n", "<A-k>", ":m -2<CR>", opts)
@@ -20,6 +32,9 @@ keymap("i", "<A-k>", "<ESC>:m -2<CR>gi", opts)
 -- Move lines up/down with alt + j/k
 keymap("v", "<A-j>", ":m '>+1<CR>gvgv", opts)
 keymap("v", "<A-k>", ":m '<-2<CR>gvgv", opts)
+
+-- Persist register on paste
+keymap("v", "p", "_dP", opts)
 
 -- Plugins --
 -- Telescope
