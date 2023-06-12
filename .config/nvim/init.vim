@@ -1,31 +1,3 @@
-" Plugins
-call plug#begin()
-" Color preview
-Plug 'ap/vim-css-color'
-
-" Lua function library (required by telescope)
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.1'}
-
-" Extendable fuzzy finder
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" LSP Support
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'}
-Plug 'williamboman/mason-lspconfig.nvim'
-
-" Autocompletion
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'L3MON4D3/LuaSnip'
-
-Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
-
-" Miscellanous
-Plug 'mbbill/undotree'
-call plug#end()
-
 " Include lua files
 lua require('saiba')
 

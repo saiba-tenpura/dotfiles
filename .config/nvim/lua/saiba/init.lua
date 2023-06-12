@@ -1,5 +1,6 @@
 require 'saiba.keymaps'
 require 'saiba.lsp'
 require 'saiba.options'
+require 'saiba.plugins'
 require 'saiba.treesitter'
 require 'saiba.undotree'
