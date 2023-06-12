@@ -34,7 +34,7 @@ keymap("v", "<A-j>", ":m '>+1<CR>gvgv", opts)
 keymap("v", "<A-k>", ":m '<-2<CR>gvgv", opts)
 
 -- Persist register on paste
-keymap("v", "p", "_dP", opts)
+keymap("v", "p", '"_dP', opts)
 
 -- Plugins --
 -- Telescope
