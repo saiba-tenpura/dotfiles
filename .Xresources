@@ -19,10 +19,10 @@ URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 
 ! Font
-URxvt.font: xft:Iosevka:style=Regular:size=10
-URxvt.boldFont: xft:Iosevka:style=Bold:size=10
-URxvt.italicFont: xft:Iosevka:style=Italic:size=10
-URxvt.boldItalicFont: xft:Iosevka:style=Bold Italic:size=10
+URxvt.font: xft:IosevkaTerm Nerd Font Mono:style=Regular:size=10
+URxvt.boldFont: xft:IosevkaTerm Nerd Font Mono:style=Bold:size=10
+URxvt.italicFont: xft:IosevkaTerm Nerd Font Mono:style=Italic:size=10
+URxvt.boldItalicFont: xft:IosevkaTerm Nerd Font Mono:style=Bold Italic:size=10
 
 ! Geometry
 ! Temporary workaround for scaling issue
