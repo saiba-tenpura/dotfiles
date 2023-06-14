@@ -44,9 +44,3 @@ set statusline+=\ %1*
 set statusline+=\ %l:%c                              " Line & Column
 set statusline+=\ %P                                 " Percentage
 set statusline+=\ %*
-
-" Highlights
-hi! link SignColumn Normal
-
-" Autocomplete menu
-hi PMenu ctermfg=lightgray ctermbg=234
