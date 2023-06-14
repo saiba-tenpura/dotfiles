@@ -1,8 +1,21 @@
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({buffer = bufnr})
+  local keymap = vim.keymap
+  local opts = {buffer = bufnr, noremap = true}
+  keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+  keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+  keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
+
+lsp.ensure_installed({
+  'bashls',
+  'eslint',
+  'jsonls',
+  'lua_ls',
+})
 
 require('lspconfig').lua_ls.setup({
   settings = {
