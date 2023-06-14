@@ -31,15 +31,20 @@ return require('packer').startup(function(use)
     requires = {{'nvim-lua/plenary.nvim'}}
   }
 
+  -- Fuzzy finder
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
 
+  -- Icons
+  use 'nvim-tree/nvim-web-devicons'
+  use 'onsails/lspkind-nvim'
+
+  -- LSP Support
   use {
     'VonHeikemen/lsp-zero.nvim', branch = 'v2.x',
     requires = {
-      -- LSP Support
       {'neovim/nvim-lspconfig'},             -- Required
       {                                      -- Optional
         'williamboman/mason.nvim',

@@ -1,5 +1,12 @@
 local lsp = require('lsp-zero').preset({})
 
+lsp.ensure_installed({
+  'bashls',
+  'eslint',
+  'jsonls',
+  'lua_ls',
+})
+
 lsp.on_attach(function(client, bufnr)
   local keymap = vim.keymap
   local opts = {buffer = bufnr, noremap = true}
@@ -9,13 +16,6 @@ lsp.on_attach(function(client, bufnr)
   keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
-
-lsp.ensure_installed({
-  'bashls',
-  'eslint',
-  'jsonls',
-  'lua_ls',
-})
 
 require('lspconfig').lua_ls.setup({
   settings = {
@@ -31,48 +31,10 @@ lsp.setup()
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
-local kind_icons = {
-  Text = "󰦨",
-  Method = "",
-  Function = "󰊕",
-  Constructor = "󱁤",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "󰅩",
-  Property = "",
-  Unit = "",
-  Value = "󰎠",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-
+local lspkind = require('lspkind')
 cmp.setup({
   formatting = {
-    fields = {"kind", "abbr", "menu"},
-    format = function(entry, vim_item)
-      vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-      vim_item.menu = ({
-        buffer = '[Buffer]',
-        nvim_lsp = '[LSP]',
-        luasnip = '[LuaSnip]',
-        nvim_lua = '[Lua]',
-        latex_symbols = '[LaTeX]',
-      })[entry.source.name]
-      return vim_item
-    end
+    format = lspkind.cmp_format(),
   },
   mapping = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(),
