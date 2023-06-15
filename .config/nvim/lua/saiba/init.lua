@@ -1,3 +1,4 @@
+require('saiba.autopairs')
 require('saiba.colorscheme')
 require('saiba.keymaps')
 require('saiba.lsp')

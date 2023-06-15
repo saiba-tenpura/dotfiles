@@ -21,6 +21,7 @@ vim.cmd([[
 local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  use 'windwp/nvim-autopairs'
 
   -- CSS colorizer
   use 'ap/vim-css-color'
