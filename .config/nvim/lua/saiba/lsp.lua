@@ -13,7 +13,7 @@ lsp.on_attach(function(client, bufnr)
   keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
   keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  keymap.set({"n", "v"}, "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
   keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
