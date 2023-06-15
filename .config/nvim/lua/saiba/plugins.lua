@@ -32,7 +32,6 @@ return require('packer').startup(function(use)
     requires = {{'nvim-lua/plenary.nvim'}}
   }
 
-  -- Fuzzy finder
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'

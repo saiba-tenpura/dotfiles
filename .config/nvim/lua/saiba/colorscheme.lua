@@ -16,7 +16,7 @@ hl(0, 'CmpItemKindUnit', {link='CmpItemKindKeyword'})
 
 -- LSP
 hl(0, 'SignColumn', {link='Normal'})
-hl(0, 'DiagnosticVirtualTextError', {ctermfg=124})
+hl(0, 'DiagnosticVirtualTextError', {ctermfg=9})
 hl(0, 'DiagnosticVirtualTextInfo', {ctermfg=1})
 hl(0, 'DiagnosticVirtualTextWarn', {ctermfg=166})
 hl(0, 'DiagnosticVirtualTextHint', {ctermfg=234})
