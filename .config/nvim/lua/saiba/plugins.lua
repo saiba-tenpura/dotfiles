@@ -37,6 +37,11 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {{'nvim-tree/nvim-web-devicons', opt = true}}
+  }
+
   -- Icons
   use 'nvim-tree/nvim-web-devicons'
   use 'onsails/lspkind-nvim'

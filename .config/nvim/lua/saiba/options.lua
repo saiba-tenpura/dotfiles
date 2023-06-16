@@ -31,3 +31,6 @@ end
 vim.opt.path:append { '**' }       -- Search recursively in current dir
 vim.opt.wildignore:append { ".git", ".hg", ".svn" }
 vim.opt.wildignore:append { "*.kgb", "*.rar", "*.zip", "*.tar.bz2", "*.tar.gz", "*.tar.xz" }
+
+-- Hide EOB
+vim.opt.fillchars:append('eob: ')

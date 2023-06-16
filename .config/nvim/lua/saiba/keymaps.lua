@@ -41,3 +41,6 @@ keymap("v", "p", '"_dP', opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>gf", ":Telescope git_files<CR>", opts)
 keymap("n", "<leader>lg", ":Telescope live_grep<CR>", opts)
+
+-- Nvimtree
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
