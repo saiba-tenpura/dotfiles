@@ -23,8 +23,14 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'windwp/nvim-autopairs'
 
-  -- CSS colorizer
-  use 'ap/vim-css-color'
+  -- Bufferline
+  use {
+    'akinsho/bufferline.nvim', tag = '*',
+    requires = 'nvim-tree/nvim-web-devicons'
+  }
+
+  -- Colorizer
+  use 'norcalli/nvim-colorizer.lua'
 
   -- Extendable fuzzy finder
   use {
