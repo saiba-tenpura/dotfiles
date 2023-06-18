@@ -1,22 +1,26 @@
-local hl = vim.api.nvim_set_hl
+local overrides = {
+  -- CMP
+  PMenu = {ctermbg=234, ctermfg=7},
+  CmpItemAbbrDeprecated = {ctermbg='NONE', strikethrough=true, ctermfg=8},
+  CmpItemAbbrMatch = {ctermbg='NONE', ctermfg=3},
+  CmpItemAbbrMatchFuzzy = {link='CmpIntemAbbrMatch'},
+  CmpItemKindVariable = {ctermbg='NONE', ctermfg=11},
+  CmpItemKindInterface = {link='CmpItemKindVariable'},
+  CmpItemKindText = {link='CmpItemKindVariable'},
+  CmpItemKindFunction = {ctermbg='NONE', ctermfg=2},
+  CmpItemKindMethod = {link='CmpItemKindFunction'},
+  CmpItemKindKeyword = {ctermbg='NONE', ctermfg=6},
+  CmpItemKindProperty = {link='CmpItemKindKeyword'},
+  CmpItemKindUnit = {link='CmpItemKindKeyword'},
 
--- CMP
-hl(0, 'PMenu', {ctermbg=234, ctermfg=7})
-hl(0, 'CmpItemAbbrDeprecated', {ctermbg='NONE', strikethrough=true, ctermfg=8})
-hl(0, 'CmpItemAbbrMatch', {ctermbg='NONE', ctermfg=3})
-hl(0, 'CmpItemAbbrMatchFuzzy', {link='CmpIntemAbbrMatch'})
-hl(0, 'CmpItemKindVariable', {ctermbg='NONE', ctermfg=11})
-hl(0, 'CmpItemKindInterface', {link='CmpItemKindVariable'})
-hl(0, 'CmpItemKindText', {link='CmpItemKindVariable'})
-hl(0, 'CmpItemKindFunction', {ctermbg='NONE', ctermfg=2})
-hl(0, 'CmpItemKindMethod', {link='CmpItemKindFunction'})
-hl(0, 'CmpItemKindKeyword', {ctermbg='NONE', ctermfg=6})
-hl(0, 'CmpItemKindProperty', {link='CmpItemKindKeyword'})
-hl(0, 'CmpItemKindUnit', {link='CmpItemKindKeyword'})
+  -- LSP
+  SignColumn = {link='Normal'},
+  DiagnosticVirtualTextError = {ctermfg=9},
+  DiagnosticVirtualTextInfo = {ctermfg=1},
+  DiagnosticVirtualTextWarn = {ctermfg=166},
+  DiagnosticVirtualTextHint = {ctermfg=234},
+}
 
--- LSP
-hl(0, 'SignColumn', {link='Normal'})
-hl(0, 'DiagnosticVirtualTextError', {ctermfg=9})
-hl(0, 'DiagnosticVirtualTextInfo', {ctermfg=1})
-hl(0, 'DiagnosticVirtualTextWarn', {ctermfg=166})
-hl(0, 'DiagnosticVirtualTextHint', {ctermfg=234})
+for k,v in pairs(overrides) do
+  vim.api.nvim_set_hl(0, k, v)
+end
