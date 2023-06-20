@@ -29,6 +29,10 @@ return require('packer').startup(function(use)
     requires = 'nvim-tree/nvim-web-devicons'
   }
 
+  -- Colorscheme
+  use 'rktjmp/lush.nvim'
+  use { 'git@github.com:saiba-tenpura/pywal_theme.nvim.git', as = 'pywal_theme' }
+
   -- Colorizer
   use 'norcalli/nvim-colorizer.lua'
 

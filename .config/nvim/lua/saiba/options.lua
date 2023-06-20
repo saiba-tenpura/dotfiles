@@ -20,6 +20,7 @@ local options = {
   showmode = false,
   splitbelow = true,
   splitright = true,
+  termguicolors = true,
   -- Miscellanous
   fileencoding = "utf-8",
 }
