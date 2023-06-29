@@ -5,6 +5,8 @@ lsp.ensure_installed({
   'eslint',
   'jsonls',
   'lua_ls',
+  'tsserver',
+  'volar',
 })
 
 lsp.on_attach(function(client, bufnr)
