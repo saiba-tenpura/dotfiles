@@ -2,6 +2,7 @@ local lsp = require('lsp-zero').preset({})
 
 lsp.ensure_installed({
   'bashls',
+  'cssls',
   'eslint',
   'jsonls',
   'lua_ls',
