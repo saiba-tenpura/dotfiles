@@ -23,6 +23,7 @@ local options = {
   termguicolors = true,
   -- Miscellanous
   fileencoding = "utf-8",
+  laststatus = 3,
 }
 
 for k, v in pairs(options) do

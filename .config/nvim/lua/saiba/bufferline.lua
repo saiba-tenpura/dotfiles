@@ -3,8 +3,9 @@ require('bufferline').setup({
     offsets = {
       {
         filetype = 'NvimTree',
-        text = '',
+        highlight = 'NvimTreeNormal',
         padding = 1,
+        text = '',
       }
     }
   }
