@@ -13,7 +13,7 @@ Xft.lcdfilter: lcdfilter
 URxvt.internalBorder: 24
 
 ! Copy & Paste
-URxvt.perl-ext-comon: default,clipboard
+URxvt.perl-ext-common: default,selection-to-clipboard
 URxvt.clipboard.autocopy: true
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
