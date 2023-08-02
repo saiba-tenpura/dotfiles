@@ -4,9 +4,13 @@
 #include ".cache/wal/colors.Xresources"
 
 !! Xft
-Xft.dpi: 96
+Xft.dpi: 144
 Xft.antialias: true
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.hinting: true
 Xft.lcdfilter: lcdfilter
+Xft.rgba: rgb
 
 !! URxvt
 ! Border
