@@ -32,8 +32,8 @@ client.background       #ffffff
 
 # Gaps
 gaps inner 10
-gaps outer 20
-gaps bottom 100
+gaps outer 5
+gaps bottom 35
 smart_borders on
 smart_gaps on
 
