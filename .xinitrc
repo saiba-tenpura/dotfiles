@@ -36,5 +36,7 @@ fi
 udiskie &
 xset s 300 300
 xset dpms 300 450 600
-xrandr --output DisplayPort-0 --mode 3840x2160 --rate 143.99
+xrandr --dpi 192 --fb 7680x4120 \
+    --output DisplayPort-0 --mode 3840x2160 --rate 143.99 \
+    --output HDMI-A-0 --scale 2x2 --pos 3840x0 --panning 3840x2160+3840+0
 exec i3
