@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
 
   -- Colorscheme
   use 'rktjmp/lush.nvim'
-  use { 'git@github.com:saiba-tenpura/pywal_theme.nvim.git', as = 'pywal_theme' }
+  use { 'saiba-tenpura/pywal-theme.nvim', as = 'pywal-theme' }
 
   -- Colorizer
   use 'norcalli/nvim-colorizer.lua'
