@@ -19,6 +19,9 @@ This repository contains my personal configuration files for my linux setups (ak
 * **Font:** Iosevka Term Nerd Font
 
 ## Wayland
+![Wayland-Empty](https://github.com/saiba-tenpura/dotfiles/assets/61359816/e60b1849-780a-444b-b58a-830397ec9e17)
+![Wayland-Busy](https://github.com/saiba-tenpura/dotfiles/assets/61359816/8635a55f-8718-40c5-9ff8-c6a5f5238c42)
+
 * **WM:** [Hyprland](https://github.com/hyprwm/Hyprland)
 * **Bar:** [Waybar](https://github.com/Alexays/Waybar)
 * **File Browser:** [nnn](https://github.com/jarun/nnn)
