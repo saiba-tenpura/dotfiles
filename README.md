@@ -2,6 +2,9 @@
 This repository contains my personal configuration files for my linux setups (aka. **dotfiles**).
 
 ## Xorg
+![Xorg-Empty](/screenshots/xorg-empty.png?raw=true)
+![Xorg-Busy](/screenshots/xorg-busy.png?raw=true)
+
 * **WM:** [i3](https://github.com/i3/i3)
 * **Bar:** [Polybar](https://github.com/polybar/polybar) [Docky](https://github.com/adi1090x/polybar-themes/tree/master#docky) theme by adi1090x
 * **Compositor:** [picom](https://github.com/yshui/picom)
