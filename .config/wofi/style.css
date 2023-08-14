@@ -1,7 +1,7 @@
 window {
     margin: 0px;
     border: 1px solid --wofi-color1;
-    background-color: rgba(--wofi-rgb-color0, 0.5);
+    background-color: --wofi-color0;
 }
 
 #input {
