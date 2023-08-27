@@ -15,6 +15,9 @@ floating_modifier $mod
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 1
 
+# Blender
+for_window [class="^Blender$" title="^Blender Preferences$"] floating enable
+
 # Steam
 for_window [class="^Steam$" title="^Friends$"] floating enable
 for_window [class="^Steam$" title="^Steam - News$"] floating enable
