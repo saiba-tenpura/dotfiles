@@ -17,6 +17,7 @@ for_window [class=".*"] border pixel 1
 
 # Blender
 for_window [class="^Blender$" title="^Blender Preferences$"] floating enable
+for_window [class="^Blender$" title="^Blender Render$"] floating enable
 
 # Steam
 for_window [class="^Steam$" title="^Friends$"] floating enable
