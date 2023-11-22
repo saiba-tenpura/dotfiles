@@ -16,7 +16,7 @@ This repository contains my personal configuration files for my linux setups (ak
 * **Lockscreen:** [Betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
 * **PDF Viewer:** [zathura](https://github.com/pwmt/zathura)
-* **Font:** Iosevka Term Nerd Font
+* **Font:** IosevkaTerm NF
 
 ## Wayland
 ![Wayland-Empty](https://github.com/saiba-tenpura/dotfiles/assets/61359816/e60b1849-780a-444b-b58a-830397ec9e17)
@@ -31,7 +31,7 @@ This repository contains my personal configuration files for my linux setups (ak
 * **Lockscreen:** [swaylock-effects](https://github.com/mortie/swaylock-effects)
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
 * **PDF Viewer:** [zathura](https://github.com/pwmt/zathura)
-* **Font:** IosevkaTerm Nerd Font
+* **Font:** IosevkaTerm NF
 
 ## Installation
 *Disclaimer:* The install.sh script will backup any previously present dotfiles which would be overwritten to the .dotfiles.bak directory. In any case you should always have a backup of your files or try it with a freshly created user first. Just to be save in case something goes wrong.
