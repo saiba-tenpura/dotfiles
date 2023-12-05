@@ -41,8 +41,10 @@ export BROWSER="firefox"
 
 # History
 export HISTCONTROL=ignoreboth
-export HISTSIZE=8096
+export HISTSIZE=32384
+export HISTTIMEFORMAT='%F %T '
 export LESSHISTFILE=/dev/null
+shopt -s histappend
 
 # Window
 shopt -s checkwinsize
