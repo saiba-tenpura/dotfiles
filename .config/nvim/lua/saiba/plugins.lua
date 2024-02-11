@@ -62,6 +62,9 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'onsails/lspkind-nvim'
 
+  -- LaTeX
+  use 'lervag/vimtex'
+
   -- LSP Support
   use {
     'VonHeikemen/lsp-zero.nvim', branch = 'v2.x',
