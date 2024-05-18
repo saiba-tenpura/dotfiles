@@ -1,24 +1,13 @@
-local lsp = require('lsp-zero').preset({})
+local lsp_zero = require('lsp-zero')
 
-lsp.ensure_installed({
-  'bashls',
-  'cssls',
-  'eslint',
-  'jsonls',
-  'lua_ls',
-  'tsserver',
-  'volar',
-})
-
-lsp.on_attach(function(client, bufnr)
-  local keymap = vim.keymap
-  local opts = {buffer = bufnr, noremap = true}
-  keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-  keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  keymap.set({"n", "v"}, "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-  keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({buffer = bufnr})
 end)
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {'bashls', 'cssls', 'eslint', 'jsonls', 'lua_ls', 'tsserver', 'volar'}
+})
 
 require('lspconfig').lua_ls.setup({
   settings = {
@@ -30,7 +19,7 @@ require('lspconfig').lua_ls.setup({
     }
   }
 })
-lsp.setup()
+lsp_zero.setup()
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
@@ -39,13 +28,13 @@ cmp.setup({
   formatting = {
     format = lspkind.cmp_format(),
   },
-  mapping = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-y>'] = cmp.mapping.confirm({select = true}),
+  mapping = {
+    ['<C-y>'] = cmp.mapping.confirm({select = false}),
     ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+    ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<Tab>'] = cmp_action.luasnip_supertab(),
     ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-  })
+  }
 })
