@@ -52,7 +52,6 @@ require('lazy').setup({
   {'williamboman/mason-lspconfig.nvim'},  {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
-  {'L3MON4D3/LuaSnip'},
 
   -- Statusline
   {'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}}
