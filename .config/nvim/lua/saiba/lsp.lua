@@ -6,7 +6,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'bashls', 'cssls', 'eslint', 'jsonls', 'lua_ls', 'tsserver', 'volar'}
+  ensure_installed = { 'bashls', 'cssls', 'eslint', 'jsonls', 'lua_ls', 'tsserver', 'volar' }
 })
 
 require('lspconfig').lua_ls.setup({
