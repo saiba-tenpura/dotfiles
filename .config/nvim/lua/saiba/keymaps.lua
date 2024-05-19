@@ -48,3 +48,8 @@ keymap("n", "<leader>lg", ":Telescope live_grep<CR>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+-- LSP
+keymap("n", "gd", vim.lsp.buf.definition, opts)
+keymap("n", "K", vim.lsp.buf.hover, opts)
+keymap({ "n", "v" }, '<leader>ca', vim.lsp.buf.code_action, opts)

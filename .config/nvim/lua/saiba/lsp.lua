@@ -22,19 +22,16 @@ require('lspconfig').lua_ls.setup({
 lsp_zero.setup()
 
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
 local lspkind = require('lspkind')
 cmp.setup({
   formatting = {
     format = lspkind.cmp_format(),
   },
   mapping = {
-    ['<C-y>'] = cmp.mapping.confirm({select = false}),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-y>'] = cmp.mapping.confirm({select = true}),
+    ['<C-Space>'] = cmp.mapping.complete({}),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-    ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<Tab>'] = cmp_action.luasnip_supertab(),
-    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
   }
 })
