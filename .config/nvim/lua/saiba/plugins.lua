@@ -13,6 +13,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- AI code assistant
+  "David-Kunz/gen.nvim",
+
   -- Autopairs
   'windwp/nvim-autopairs',
   'windwp/nvim-ts-autotag',

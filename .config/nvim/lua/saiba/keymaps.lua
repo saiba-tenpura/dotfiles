@@ -41,6 +41,9 @@ keymap("v", "<A-k>", ":m '<-2<CR>gvgv", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Plugins --
+-- Gen
+keymap({'n', 'v'}, '<leader>]', ':Gen<CR>', opts)
+
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>gf", ":Telescope git_files<CR>", opts)
