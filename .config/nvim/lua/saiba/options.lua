@@ -26,11 +26,15 @@ local options = {
   laststatus = 3,
 }
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
+-- Set Vim options
+for name, value in pairs(options) do
+  vim.opt[name] = value
 end
 
-vim.opt.path:append { '**' }       -- Search recursively in current dir
+-- Add search path to current directory recursively
+vim.opt.path:append { '**' }
+
+-- Ignore certain files and directories when searching
 vim.opt.wildignore:append { ".git", ".hg", ".svn" }
 vim.opt.wildignore:append { "*.kgb", "*.rar", "*.zip", "*.tar.bz2", "*.tar.gz", "*.tar.xz" }
 
