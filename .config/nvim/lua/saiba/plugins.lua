@@ -25,7 +25,7 @@ require('lazy').setup({
 
   -- Colorscheme
   'rktjmp/lush.nvim',
-  {'saiba-tenpura/pywal-theme.nvim', as = 'pywal-theme'},
+  {'saiba-tenpura/pywal-theme.nvim', name = 'pywal-theme'},
 
   -- Colorizer
   'norcalli/nvim-colorizer.lua',
