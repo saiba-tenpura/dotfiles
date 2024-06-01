@@ -11,7 +11,7 @@
         "clock",
     ],
     "modules-right": [
-        "custom/updates",
+        "custom/pacman",
         "battery",
         "battery#bat1",
         "pulseaudio",
@@ -90,10 +90,11 @@
         "on-click": "wlogout -b 4 -T 250 -B 250",
         "tooltip": false
     },
-    "custom/updates": {
-        "exec": "yay -Qu | wc -l",
+    "custom/pacman": {
         "format": "󰏗 {}",
         "interval": 3600,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
     },
     "custom/wofi": {
         "format": "",
