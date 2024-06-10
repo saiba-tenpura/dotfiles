@@ -39,20 +39,3 @@ keymap("v", "<A-k>", ":m '<-2<CR>gvgv", opts)
 
 -- Persist register on paste
 keymap("v", "p", '"_dP', opts)
-
--- Plugins --
--- Gen
-keymap({'n', 'v'}, '<leader>]', ':Gen<CR>', opts)
-
--- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>gf", ":Telescope git_files<CR>", opts)
-keymap("n", "<leader>lg", ":Telescope live_grep<CR>", opts)
-
--- Nvimtree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- LSP
-keymap("n", "gd", vim.lsp.buf.definition, opts)
-keymap("n", "K", vim.lsp.buf.hover, opts)
-keymap({ "n", "v" }, '<leader>ca', vim.lsp.buf.code_action, opts)
