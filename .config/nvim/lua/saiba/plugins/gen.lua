@@ -3,7 +3,7 @@ return {
     "David-Kunz/gen.nvim",
     config = function()
       require('gen').setup({
-        model = 'llama3',
+        model = 'llama3.1',
         host = 'localhost',
         port = '11434',
         display_mode = 'float',
