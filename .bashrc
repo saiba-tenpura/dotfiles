@@ -40,11 +40,11 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 
 # History
+shopt -s histappend
 export HISTCONTROL=ignoreboth
-export HISTSIZE=32384
+export HISTSIZE=131072
 export HISTTIMEFORMAT='%F %T '
 export LESSHISTFILE=/dev/null
-shopt -s histappend
 
 # Window
 shopt -s checkwinsize
