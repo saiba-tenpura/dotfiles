@@ -38,6 +38,7 @@ alias vim='nvim'
 export TERMINAL="urxvt"
 export EDITOR="nvim"
 export BROWSER="firefox"
+export GTK_THEME="Adwaita:dark"
 
 # History
 shopt -s histappend
