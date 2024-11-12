@@ -8,6 +8,8 @@ swaylock \
     --daemonize \
     --effect-blur 5x5 \
     --image "$HOME/wallpapers/current.png" \
+    --grace-no-mouse \
+    --grace-no-touch \
     --indicator \
     --indicator-radius 75 \
     --indicator-thickness 5 \
