@@ -2,6 +2,9 @@
 
 shopt -s nullglob
 
+# Mount all available connected MTP devices
+gio mount -li | awk -F= '{if(index($2,"mtp") == 1)system("gio mount "$2)}'
+
 # Source config with base_target & sources
 source $1
 
