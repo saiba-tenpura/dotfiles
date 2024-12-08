@@ -11,7 +11,7 @@ This repository contains my personal configuration files for my linux setups (ak
 * **Color Temperature Tool:** [Redshift](https://github.com/jonls/redshift)
 * **Editor:** [Neovim](https://github.com/neovim/neovim) using my custom [pywal theme](https://github.com/saiba-tenpura/pywal_theme.nvim)
 * **File Browser:** [nnn](https://github.com/jarun/nnn)
-* **Terminal:** urxvt
+* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
 * **Launcher/DMenu:** [rofi](https://github.com/davatorium/rofi) using the [Docky](https://github.com/adi1090x/polybar-themes/tree/master#docky) theme by adi1090x
 * **Lockscreen:** [Betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
