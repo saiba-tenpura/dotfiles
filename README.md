@@ -11,7 +11,7 @@ This repository contains my personal configuration files for my linux setups (ak
 * **Color Temperature Tool:** [Redshift](https://github.com/jonls/redshift)
 * **Editor:** [Neovim](https://github.com/neovim/neovim) using my custom [pywal theme](https://github.com/saiba-tenpura/pywal_theme.nvim)
 * **File Browser:** [nnn](https://github.com/jarun/nnn)
-* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
+* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty), [TMUX](https://github.com/tmux/tmux)
 * **Launcher/DMenu:** [rofi](https://github.com/davatorium/rofi) using the [Docky](https://github.com/adi1090x/polybar-themes/tree/master#docky) theme by adi1090x
 * **Lockscreen:** [Betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
@@ -25,7 +25,7 @@ This repository contains my personal configuration files for my linux setups (ak
 * **WM:** [Hyprland](https://github.com/hyprwm/Hyprland)
 * **Bar:** [Waybar](https://github.com/Alexays/Waybar)
 * **File Browser:** [nnn](https://github.com/jarun/nnn)
-* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
+* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty), [TMUX](https://github.com/tmux/tmux)
 * **Editor:** [Neovim](https://github.com/neovim/neovim) using my custom [pywal theme](https://github.com/saiba-tenpura/pywal_theme.nvim)
 * **Launcher/DMenu:** [Wofi](https://sr.ht/~scoopta/wofi/)
 * **Lockscreen:** [swaylock-effects](https://github.com/mortie/swaylock-effects)
@@ -47,3 +47,6 @@ chmod 744 install.sh
 # Run the script
 ./install.sh
 ```
+
+## Author
+This project was created in 2024 by Saiba Tenpura.
