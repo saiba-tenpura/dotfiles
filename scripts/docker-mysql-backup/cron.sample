@@ -1,0 +1,2 @@
+0 23 * * * root /path/to/backup.sh --daily
+30 23 1 * * root /path/to/backup.sh --monthly
