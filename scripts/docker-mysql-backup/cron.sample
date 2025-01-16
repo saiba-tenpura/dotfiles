@@ -1,2 +1,2 @@
-0 23 * * * root /path/to/backup.sh --daily
-30 23 1 * * root /path/to/backup.sh --monthly
+0 23 * * * root /path/to/backup.sh --daily >/dev/null 2>&1
+30 23 1 * * root /path/to/backup.sh --monthly >/dev/null 2>&1

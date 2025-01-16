@@ -49,6 +49,10 @@ if [[ $# -eq 0 ]] ; then
     error "No options were given. See -h|--help for available options."
 fi
 
+if [[ "$EUID" -ne 0 ]]; then
+    error "Please run this script as root!"
+fi
+
 while [ $# -gt 0 ]; do
     case "$1" in
         -h|--help)
