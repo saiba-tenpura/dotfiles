@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
 
-export RESTIC_REPOSITORY="/storage/hdd/restic-repo"
-export RESTIC_PASSWORD_FILE="/root/.config/.restic"
-FILES=(
-    /home/saiba/.minecraft/saves
-    /home/saiba/.mozilla/firefox/*.default*
-    /home/saiba/.ssh
-    /home/saiba/.thunderbird/*.default*
-    /home/saiba/.ts3client/{chats,identity.ini,settings.db,urls.db}
-    /home/saiba/Documents
-    /home/saiba/Downloads
-    /storage/hdd/virtual-machines/
-)
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+CONFIG_VARS="RESTIC_REPOSITORY RESTIC_PASSWORD_FILE FILES"
 
 usage() {
     cat <<-EOF
@@ -31,8 +21,17 @@ error() {
     exit 2
 }
 
-check_root() {
+check() {
     [ "$EUID" -ne 0 ] && error "Script must be executed as root!"
+
+    [ ! -f "${SCRIPT_DIR}/config.sh" ] && error "Missing configuration file!"
+
+    source "${SCRIPT_DIR}/config.sh"
+    for var in $CONFIG_VARS; do
+        if [ -z "${!var}" ]; then
+            error "Please configure a value for ${var} in the config.sh!"
+        fi
+    done
 }
 
 run() {
@@ -40,7 +39,6 @@ run() {
     restic backup -vv --tag "${HOSTNAME}" $@
     restic forget --keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 24 --prune
     restic check | tee -a /var/log/restic.log
-
     exit 0
 }
 
@@ -53,15 +51,14 @@ setup() {
     read -s password_confirmation
     [[ "${password}" != "${password_confirmation}" ]] && error "Passwords do not match!"
 
-    CONFIG_DIR=$(dirname "$RESTIC_PASSWORD_FILE")
-    [ ! -d "${CONFIG_DIR}" ] && mkdir -p "${CONFIG_DIR}"
+    PASSWORD_DIR=$(dirname "$RESTIC_PASSWORD_FILE")
+    [ ! -d "${PASSWORD_DIR}" ] && mkdir -p "${PASSWORD_DIR}"
     echo "$password" > "$RESTIC_PASSWORD_FILE"
     printf 'Init new restic repository!\n'
     mkdir -p "$RESTIC_REPOSITORY"
     restic init
 
     printf 'Setup crontab!\n'
-    SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
     SCRIPT_NAME="$(basename $0)"
 	cat <<-EOF >> /etc/cron.d/restic
 	30 10 * * * root ${SCRIPT_DIR}/${SCRIPT_NAME} -r
@@ -77,11 +74,11 @@ while [ $# -gt 0 ]; do
             usage
             ;;
         -s|--setup)
-            check_root
+            check
             setup
             ;;
         -r|--run)
-            check_root
+            check
             run ${FILES[@]}
             ;;
         *)
