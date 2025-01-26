@@ -24,6 +24,8 @@ error() {
 check() {
     [ "$EUID" -ne 0 ] && error "Script must be executed as root!"
 
+    ! type -p restic 2>&1 >/dev/null && error "Missing restic binary, please ensure it is installed!"
+
     [ ! -f "${SCRIPT_DIR}/config.sh" ] && error "Missing configuration file!"
 
     source "${SCRIPT_DIR}/config.sh"
