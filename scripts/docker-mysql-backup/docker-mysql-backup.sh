@@ -4,13 +4,13 @@ BACKUP_BASE_DIR="/var/backups/docker-db-dumps/"
 
 usage() {
     cat <<-EOF
-    Usage: $(basename "$0") [options]
+	Usage: $(basename "$0") [options]
 
-        Options:
-        -h, --help      Show this help message.
-        -d, --daily     Run daily backup and cleanup functionality.
-        -m, --monthly   Run monthly backup and cleanup functionality.
-        EOF
+	Options:
+	-h, --help      Show this help message.
+	-d, --daily     Run daily backup and cleanup functionality.
+	-m, --monthly   Run monthly backup and cleanup functionality.
+	EOF
 
     exit 1
 }
