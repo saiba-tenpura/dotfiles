@@ -41,9 +41,6 @@ The dotfiles are managed via a bare git repository.
 # Download install script from this repository
 curl -sO "https://raw.githubusercontent.com/saiba-tenpura/dotfiles/master/install.sh"
 
-# Make the script executable
-chmod 744 install.sh
-
 # Run the script
 ./install.sh
 ```
