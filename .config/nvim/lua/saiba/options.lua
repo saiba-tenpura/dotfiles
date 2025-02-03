@@ -21,7 +21,7 @@ local options = {
   splitbelow = true,
   splitright = true,
   termguicolors = true,
-  -- Miscellanous
+  -- Miscellaneous
   fileencoding = "utf-8",
   laststatus = 3,
 }
