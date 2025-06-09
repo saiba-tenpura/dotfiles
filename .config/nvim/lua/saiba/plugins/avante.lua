@@ -5,10 +5,11 @@ return {
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
-      provider = "ollama",
-      ollama = {
-        endpoint = "http://127.0.0.1:11434",
-        model = "deepseek-r1:32b",
+      providers = {
+        ollama = {
+          endpoint = "http://127.0.0.1:11434",
+          model = "deepseek-r1:32b",
+        },
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
