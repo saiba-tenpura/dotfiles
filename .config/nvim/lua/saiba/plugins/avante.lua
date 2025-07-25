@@ -1,8 +1,9 @@
 return {
   {
     "yetone/avante.nvim",
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
     event = "VeryLazy",
-    lazy = false,
     version = false, -- Never set this value to "*"! Never!
     ---@module 'avanta'
     ---@type avante.Config
@@ -11,13 +12,10 @@ return {
       providers = {
         ollama = {
           endpoint = "http://127.0.0.1:11434",
-          model = "deepseek-r1:32b",
+          model = "deepseek-r1:8b",
         },
       },
     },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
