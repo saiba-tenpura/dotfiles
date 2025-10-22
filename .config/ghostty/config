@@ -1,0 +1,24 @@
+# Defaults: ghostty +show-config --default --docs
+# Reload: Control + Shift + comma
+
+# Cursor
+cursor-style = block
+
+# Font
+# font-family = "IosevkaTerm NFM"
+font-family = "Noto Sans Mono"
+font-size = 8
+font-synthetic-style = bold,italic,bold-italic
+
+# Keybinds
+keybind = performable:ctrl+c=copy_to_clipboard
+
+# Window
+gtk-titlebar = false
+window-padding-x = 10
+window-padding-y = 10
+
+# Miscellaneous
+# alpha-blending = linear-corrected
+copy-on-select = true
+scroll-to-bottom = keystroke,no-output
