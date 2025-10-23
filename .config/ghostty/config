@@ -1,5 +1,5 @@
 # Defaults: ghostty +show-config --default --docs
-# Reload: Control + Shift + comma
+# Reload: Control + Shift + ,
 
 # Cursor
 cursor-style = block
@@ -11,14 +11,41 @@ font-size = 8
 font-synthetic-style = bold,italic,bold-italic
 
 # Keybinds
+
+## Window Management
+keybind = ctrl+shift+n=new_window
+
+## Tab Management
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+w=close_tab:this
+
+## Split Management
+keybind = ctrl+shift+o=new_split:right
+keybind = ctrl+shift+e=new_split:down
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+k=goto_split:up
+keybind = ctrl+alt+j=goto_split:down
+keybind = ctrl+alt+l=goto_split:right
+
+## Utility
 keybind = performable:ctrl+c=copy_to_clipboard
 
 # Window
+# background-blur = true
+# background-opacity = 0.9
 gtk-titlebar = false
+window-decoration = server
 window-padding-x = 10
 window-padding-y = 10
 
+# Split
+# unfocused-split-opacity = 0.5
+# unfocused-split-fill =
+# split-divider-color =
+
 # Miscellaneous
-# alpha-blending = linear-corrected
+app-notifications = no-clipboard-copy, no-config-reload
 copy-on-select = true
+mouse-hide-while-typing = true
+resize-overlay = never
 scroll-to-bottom = keystroke,no-output
