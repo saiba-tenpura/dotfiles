@@ -1,0 +1,93 @@
+# Yazi - Keymap
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[mgr]
+
+keymap = [
+	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
+	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
+	{ on = "q",     run = "quit",               desc = "Quit the process" },
+	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
+	{ on = "<C-c>", run = "close",              desc = "Close the current tab, or quit if it's last" },
+	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
+
+	# Hopping
+	{ on = "k", run = "arrow prev", desc = "Previous file" },
+	{ on = "j", run = "arrow next", desc = "Next file" },
+
+	{ on = [ "g", "g" ], run = "arrow top", desc = "Go to top" },
+	{ on = "G",          run = "arrow bot", desc = "Go to bottom" },
+
+	# Navigation
+	{ on = "h", run = "leave", desc = "Back to the parent directory" },
+	{ on = "l", run = "enter", desc = "Enter the child directory" },
+
+	{ on = "H", run = "back",    desc = "Back to previous directory" },
+	{ on = "L", run = "forward", desc = "Forward to next directory" },
+
+	# Toggle
+	{ on = "<Space>", run = [ "toggle", "arrow next" ], desc = "Toggle the current selection state" },
+	{ on = "<C-a>",   run = "toggle_all --state=on",    desc = "Select all files" },
+	{ on = "<C-r>",   run = "toggle_all",               desc = "Invert selection of all files" },
+
+	# Visual mode
+	{ on = "v", run = "visual_mode",         desc = "Enter visual mode (selection mode)" },
+	{ on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
+
+	# Seeking
+	{ on = "K", run = "seek -5", desc = "Seek up 5 units in the preview" },
+	{ on = "J", run = "seek 5",  desc = "Seek down 5 units in the preview" },
+
+	# Spotting
+	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
+
+	# Operation
+	{ on = "o",         run = "open",                        desc = "Open selected files" },
+	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
+	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
+	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
+	{ on = "p",         run = "paste",                       desc = "Paste yanked files" },
+	{ on = "P",         run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
+	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
+	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },
+	{ on = "<C-->",     run = "hardlink",                    desc = "Hardlink yanked files" },
+	{ on = "Y",         run = "unyank",                      desc = "Cancel the yank status" },
+	{ on = "X",         run = "unyank",                      desc = "Cancel the yank status" },
+	{ on = "d",         run = "remove",                      desc = "Trash selected files" },
+	{ on = "D",         run = "remove --permanently",        desc = "Permanently delete selected files" },
+	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
+	{ on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
+	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
+	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
+	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
+	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
+	{ on = "z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+	{ on = "Z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
+
+	# Copy
+	{ on = [ "c", "c" ], run = "copy path",             desc = "Copy the file path" },
+	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
+	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy the filename" },
+	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+
+	# Filter
+	{ on = "f", run = "filter --smart", desc = "Filter files" },
+
+	# Find
+	{ on = "/", run = "find --smart",            desc = "Find next file" },
+	{ on = "?", run = "find --previous --smart", desc = "Find previous file" },
+	{ on = "n", run = "find_arrow",              desc = "Next found" },
+	{ on = "N", run = "find_arrow --previous",   desc = "Previous found" },
+
+	# Goto
+	{ on = [ "g", "h" ],       run = "cd ~",                            desc = "Go home" },
+	{ on = [ "g", "c" ],       run = "cd ~/.config",                    desc = "Go ~/.config" },
+	{ on = [ "g", "d" ],       run = "cd ~/Downloads",                  desc = "Go ~/Downloads" },
+	{ on = [ "g", "p" ],       run = "cd ~/Documents/Saiba/Projects",   desc = "Go ~/Documents/Saiba/Projects" },
+	{ on = [ "g", "<Space>" ], run = "cd --interactive",                desc = "Jump interactively" },
+	{ on = [ "g", "f" ],       run = "follow",                          desc = "Follow hovered symlink" },
+]

@@ -54,6 +54,9 @@ shopt -s checkwinsize
 # NNN
 . ~/.config/nnn/nnn.sh
 
+# Yazi
+. ~/.config/yazi/yazi.sh
+
 # Custom prompt
 _YELLOW="\[$(tput setaf 3)\]"
 _GREEN="\[$(tput setaf 2)\]"
