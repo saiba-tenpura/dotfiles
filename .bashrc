@@ -35,7 +35,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 # Defaults
-export TERMINAL="kitty"
+export TERMINAL="ghostty"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export GTK_THEME="Adwaita:dark"
