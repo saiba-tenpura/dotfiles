@@ -39,12 +39,13 @@ window-padding-x = 10
 window-padding-y = 10
 
 # Split
-# unfocused-split-opacity = 0.5
+unfocused-split-opacity = 0.8
 # unfocused-split-fill =
 # split-divider-color =
 
 # Miscellaneous
 app-notifications = no-clipboard-copy, no-config-reload
+confirm-close-surface=false
 copy-on-select = true
 mouse-hide-while-typing = true
 resize-overlay = never

@@ -10,6 +10,7 @@ Games
 .gnupg/*
 !.gnupg/*.conf
 .ssh/
+.password-store
 
 # Common caches
 .*cache
