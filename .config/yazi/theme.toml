@@ -5,9 +5,17 @@
 
 # : Flavor {{{
 
-# [flavor]
-# dark  = ""
-# light = ""
+[flavor]
+dark  = ""
+light = ""
+
+# : }}}
+
+
+# : App {{{
+
+[app]
+overall = {}
 
 # : }}}
 
@@ -21,9 +29,39 @@ cwd = { fg = "cyan" }
 find_keyword  = { fg = "magenta", bold = true, italic = true, underline = true }
 find_position = { fg = "magenta", bg = "reset", bold = true, italic = true }
 
+# Symlink
+symlink_target = { italic = true }
+
+# Marker
+marker_copied   = { fg = "lightgreen",  bg = "lightgreen" }
+marker_cut      = { fg = "lightred",    bg = "lightred" }
+marker_marked   = { fg = "lightcyan",   bg = "lightcyan" }
+marker_selected = { fg = "lightyellow", bg = "lightyellow" }
+
+# Count
+count_copied   = { fg = "white", bg = "green" }
+count_cut      = { fg = "white", bg = "red" }
+count_selected = { fg = "black", bg = "yellow" }
+
 # Border
 border_symbol = "│"
 border_style  = { fg = "darkgray" }
+
+# Highlighting
+syntect_theme = ""
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active   = { bg = "blue", bold = true }
+inactive = { fg = "blue", bg = "gray" }
+
+# Separator
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
 # : }}}
 
@@ -45,12 +83,176 @@ unset_alt  = { fg = "black", bg = "gray" }
 # : }}}
 
 
+# : Indicator of hovered file {{{
+
+[indicator]
+parent  = { reversed = true }
+current = { reversed = true }
+preview = { underline = true }
+padding = { open = "", close = "" }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+overall   = {}
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Permissions
+perm_sep   = { fg = "darkgray" }
+perm_type  = { fg = "green" }
+perm_read  = { fg = "yellow" }
+perm_write = { fg = "red" }
+perm_exec  = { fg = "cyan" }
+
+# Progress
+progress_label  = { bold = true }
+progress_normal = { fg = "green", bg = "black" }
+progress_error  = { fg = "yellow", bg = "red" }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+cols            = 3
+mask            = { bg = "black" }
+cand            = { fg = "lightcyan" }
+rest            = { fg = "darkgray" }
+desc            = { fg = "lightmagenta" }
+separator       = "  "
+separator_style = { fg = "darkgray" }
+
+# : }}}
+
+
+# : Confirmation {{{
+
+[confirm]
+border     = { fg = "blue" }
+title      = { fg = "blue" }
+body       = {}
+list       = {}
+btn_yes    = { reversed = true }
+btn_no     = {}
+btn_labels = [ "  [Y]es  ", "  (N)o  " ]
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border = { fg = "blue" }
+title  = { fg = "blue" }
+
+# Table
+tbl_col  = { fg = "blue" }
+tbl_cell = { fg = "yellow", reversed = true }
+
+# : }}}
+
+
+# : Notification {{{
+
+[notify]
+title_info  = { fg = "green" }
+title_warn  = { fg = "yellow" }
+title_error = { fg = "red" }
+
+# Icons
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+# : }}}
+
+
+# : Picker {{{
+
+[pick]
+border   = { fg = "blue" }
+active   = { fg = "magenta", bold = true }
+inactive = {}
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "blue" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border   = { fg = "blue" }
+active   = { reversed = true }
+inactive = {}
+
+# Icons
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+# : }}}
+
+
+# : Task manager {{{
+
+[tasks]
+border  = { fg = "blue" }
+title   = {}
+hovered = { fg = "magenta", bold = true }
+
+# : }}}
+
+
+# : Help menu {{{
+
+[help]
+on      = { fg = "cyan" }
+run     = { fg = "magenta" }
+desc    = {}
+hovered = { reversed = true, bold = true }
+footer  = { fg = "black", bg = "white" }
+
+# : }}}
+
+
 # : File-specific styles {{{
 
 [filetype]
 rules = [
+	# Image
+	{ mime = "image/*", fg = "yellow" },
+	# Media
+	{ mime = "{audio,video}/*", fg = "magenta" },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "red" },
+	# Document
+	{ mime = "application/{pdf,doc,rtf}", fg = "cyan" },
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", fg = "gray" },
+	# Special file
+	{ url = "*", is = "orphan", bg = "red" },
+	{ url = "*", is = "exec"  , fg = "green" },
+	# Dummy file
+	{ url = "*", is = "dummy", bg = "red" },
+	{ url = "*/", is = "dummy", bg = "red" },
 	# Fallback
-	{ name = "*/", fg = "yellow" }
+	{ url = "*/", fg = "yellow" }
 ]
 
 # : }}}
+
