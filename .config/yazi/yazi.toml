@@ -12,11 +12,11 @@ wrap            = "no"
 tab_size        = 2
 
 [opener]
-pdff = [
+append_pdff = [
 	{ run = 'zathura "$@"', desc = "zathura", block = true, for = "unix" },
 ]
 
 [open]
-rules = [
+append_rules = [
   { mime = "application/pdf", use = [ "pdff", "reveal" ] },
 ]
