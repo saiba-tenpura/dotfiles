@@ -10,7 +10,7 @@ if systemctl -q is-active graphical.target && [ -z "${DISPLAY}" ] && [ "${XDG_VT
     if [ "${XDG_SESSION_TYPE}" = "x11" ]; then
         exec startx
     elif [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
-        exec Hyprland
+        exec start-hyprland
     fi
 fi
 
