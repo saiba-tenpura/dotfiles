@@ -5,8 +5,7 @@
 cursor-style = block
 
 # Font
-# font-family = "IosevkaTerm NFM"
-font-family = "Noto Sans Mono"
+font-family = "NotoSansM NFM"
 font-size = 8
 font-synthetic-style = bold,italic,bold-italic
 
