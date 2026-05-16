@@ -62,7 +62,6 @@ hl.env("HYPRCURSOR_SIZE", 24)
 ---- LOOK AND FEEL ----
 -----------------------
 
--- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
         gaps_in  = 5,
@@ -111,6 +110,8 @@ hl.config({
         enabled = true,
     },
 })
+
+require("config/colors")
 
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
