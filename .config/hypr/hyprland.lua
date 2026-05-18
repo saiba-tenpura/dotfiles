@@ -1,3 +1,4 @@
+-- Default configuration
 require("config/monitors")
 require("config/autostart")
 require("config/env")
