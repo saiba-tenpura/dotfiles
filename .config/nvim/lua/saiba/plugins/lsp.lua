@@ -1,6 +1,7 @@
 return {
   {
     'mason-org/mason.nvim',
+    lazy = false,
     opts = {},
   },
 
@@ -8,21 +9,25 @@ return {
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'onsails/lspkind.nvim',
+    },
     config = function()
       local cmp = require('cmp')
-      local lspkind = require('lspkind')
 
       cmp.setup({
         formatting = {
-          format = lspkind.cmp_format(),
+          format = require('lspkind').cmp_format(),
         },
+
         mapping = cmp.mapping.preset.insert({
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
         })
       })
-    end
+    end,
   },
 
   -- LSP
@@ -32,12 +37,64 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      'mason-org/mason-lspconfig.nvim',
     },
     config = function()
-      require('mason-lspconfig').setup({
-        ensure_installed = { 'bashls', 'cssls', 'eslint', 'jsonls', 'lua_ls', 'ts_ls' },
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local opts = { buffer = args.buf }
+
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, opts)
+        end,
+      })
+
+      local servers = {
+        'bashls',
+        'cssls',
+        'eslint',
+        'jsonls',
+        'lua_ls',
+        'ts_ls',
+        'vue_ls',
+      }
+
+      for _, server in ipairs(servers) do
+        vim.lsp.config(server, {
+          capabilities = capabilities,
+        })
+
+        vim.lsp.enable(server)
+      end
+
+      vim.lsp.config('lua_ls', {
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' },
+            },
+          },
+        },
+      })
+
+      vim.lsp.config('vue_ls', {
+        capabilities = capabilities,
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
+        filetypes = {
+          'typescript',
+          'javascript',
+          'typescriptreact',
+          'javascriptreact',
+          'vue',
+        },
       })
     end
-  }
+  },
 }
