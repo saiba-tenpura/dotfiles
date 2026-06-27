@@ -68,33 +68,6 @@ return {
 
         vim.lsp.enable(server)
       end
-
-      vim.lsp.config('lua_ls', {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
-          },
-        },
-      })
-
-      vim.lsp.config('vue_ls', {
-        capabilities = capabilities,
-        init_options = {
-          vue = {
-            hybridMode = false,
-          },
-        },
-        filetypes = {
-          'typescript',
-          'javascript',
-          'typescriptreact',
-          'javascriptreact',
-          'vue',
-        },
-      })
     end
   },
 }
