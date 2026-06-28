@@ -37,5 +37,9 @@ keymap("i", "<A-k>", "<ESC>:m -2<CR>gi", opts)
 keymap("v", "<A-j>", ":m '>+1<CR>gvgv", opts)
 keymap("v", "<A-k>", ":m '<-2<CR>gvgv", opts)
 
+-- Simplified line indentation with <>
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
 -- Persist register on paste
 keymap("v", "p", '"_dP', opts)
