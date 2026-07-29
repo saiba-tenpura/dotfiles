@@ -25,16 +25,16 @@ hl.bind(mod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- Move focus with mod + vim keys
-hl.bind(mod .. " + H", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mod .. " + L", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mod .. " + K", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mod .. " + J", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 
 -- Move focus with mod + arrow keys
-hl.bind(mod .. " + left", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mod .. " + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mod .. " + up", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mod .. " + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
 
 -- Switch workspaces with mod + [0-9]
 -- Move active window to a workspace with mod + SHIFT + [0-9]
