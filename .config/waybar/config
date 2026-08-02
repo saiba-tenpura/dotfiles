@@ -58,10 +58,10 @@
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{icon}  {volume}% {format_source}",
         "format-bluetooth-muted": "󰝟 {icon} {format_source}",
-        "format-muted": "󰝟  {format_source}",
+        "format-muted": "󰝟 {format_source}",
         "format-source": " {volume}%",
         "format-source-muted": "",
         "format-icons": {
@@ -92,7 +92,7 @@
     },
     "custom/pacman": {
         "format": "󰏗 {}",
-        "interval": 900,
+        "interval": 60,
         "exec": "checkupdates | wc -l",
         "exec-if": "exit 0",
     },
