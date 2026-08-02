@@ -6,6 +6,7 @@
 swaylock \
     --clock \
     --daemonize \
+    --datestr "%d.%m.%Y" \
     --effect-blur 5x5 \
     --image "$HOME/wallpapers/current.png" \
     --grace-no-mouse \
