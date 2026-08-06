@@ -1,10 +1,10 @@
 * {{
-    font-family: "IosevkaTerm NF", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
 }}
 
 window#waybar {{
-    background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }}
 
 #backlight,
@@ -26,75 +26,75 @@ window#waybar {{
 #scratchpad,
 #wireplumber,
 #workspaces {{
-    padding: 0 10px;
-    background: rgba({background.rgb}, 0.7);
+  padding: 0 10px;
+  background: rgba({background.rgb}, 0.7);
 }}
 
 /* Modules */
 
 #workspaces {{
-    padding-left: 0;
+  padding-left: 0;
 }}
 
 #workspaces button {{
-    background-color: transparent;
-    color: #ffffff;
-    padding: 0 5px;
+  background-color: transparent;
+  color: #ffffff;
+  padding: 0 5px;
 }}
 
 #workspaces button:hover {{
-    background: rgba({background.rgb}, 0.2);
+  background: rgba({background.rgb}, 0.2);
 }}
 
 #workspaces button.focused {{
-    color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+  color: #64727D;
+  box-shadow: inset 0 -3px #ffffff;
 }}
 
 #workspaces button.urgent {{
-    color: #eb4d4b;
+  color: #eb4d4b;
 }}
 
 #battery.charging, #battery.plugged {{
-    color: #26A65B;
+  color: #26A65B;
 }}
 
 @keyframes blink {{
-    to {{
-        color: #ffffff;
-    }}
+  to {{
+    color: #ffffff;
+  }}
 }}
 
 #battery.critical:not(.charging) {{
-    color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }}
 
 label:focus {{
-    background-color: #000000;
+  background-color: #000000;
 }}
 
 #network.disconnected {{
-    color: #f53c3c;
+  color: #f53c3c;
 }}
 
 /* Borders */
 
 #custom-power_btn,
 #workspaces {{
-    border-radius: 0px 15px 15px 0px;
+  border-radius: 0px 15px 15px 0px;
 }}
 
 #custom-pacman,
 #custom-wofi {{
-    border-radius: 15px 0px 0px 15px;
+  border-radius: 15px 0px 0px 15px;
 }}
 
 #clock {{
-    border-radius: 15px;
+  border-radius: 15px;
 }}
 
