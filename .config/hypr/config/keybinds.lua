@@ -3,13 +3,13 @@ require('config/vars')
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(mod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mod .. " + F", hl.dsp.window.fullscreen_state({ internal = 2, client = 0, action = "toggle" }))
 hl.bind(mod .. " + X", hl.dsp.exec_cmd("~/.config/sway/lock.sh"))
-hl.bind(mod .. " + ESCAPE", hl.dsp.exec_cmd("wlogout -b 4 -T 250 -B 250"))
+hl.bind(mod .. " + ESCAPE", hl.dsp.exec_cmd("wlogout -b 4 -T 350 -B 350"))
 hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mod .. " + S", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mod .. " + T", hl.dsp.layout("togglesplit"))  -- dwindle only
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("clipman pick --histpath='~/.local/share/clipman-primary.json' -t wofi"))
 
 -- Move focus with mod + vim keys
