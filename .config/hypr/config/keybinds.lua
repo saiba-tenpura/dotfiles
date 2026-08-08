@@ -11,6 +11,7 @@ hl.bind(mod .. " + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mod .. " + T", hl.dsp.layout("togglesplit"))  -- dwindle only
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("clipman pick --histpath='~/.local/share/clipman-primary.json' -t wofi"))
+hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/resolution-toggle.sh"))
 
 -- Move focus with mod + vim keys
 hl.bind(mod .. " + H", hl.dsp.focus({ direction = "left" }))
