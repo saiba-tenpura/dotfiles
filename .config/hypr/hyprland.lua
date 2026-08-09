@@ -1,9 +1,9 @@
 -- Default configuration
-require("config/monitors")
-require("config/autostart")
-require("config/env")
-require("config/styles")
-require("config/input")
-require("config/keybinds")
-require("config/rules")
+require("modules/monitors")
+require("modules/autostart")
+require("modules/env")
+require("modules/styles")
+require("modules/input")
+require("modules/keybinds")
+require("modules/rules")
 
