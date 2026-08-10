@@ -1,3 +1,4 @@
+-- Window
 hl.window_rule({
     -- Fix some dragging issues with XWayland
     name  = "fix-xwayland-drags",
@@ -42,6 +43,6 @@ hl.window_rule({
     fullscreen = true,
     move       = {0, 0},
     no_anim    = true,
-    size       = {5760, 1080}
+    workspace  = "special:magic",
 })
 

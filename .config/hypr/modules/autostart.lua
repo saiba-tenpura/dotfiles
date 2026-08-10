@@ -1,6 +1,5 @@
 hl.on("hyprland.start", function ()
-    -- Lock screen & screen saver
-    hl.exec_cmd("~/.config/sway/lock.sh & ~/.config/sway/idle.sh")
+    -- Applications
 
     -- Bar & wallpaper
     hl.exec_cmd("waybar & hyprpaper")
@@ -11,4 +10,12 @@ hl.on("hyprland.start", function ()
 
     -- Clipboard history
     hl.exec_cmd("wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'")
+
+    -- Scripts
+
+    -- Waybar Toggle
+    hl.exec_cmd("~/.config/hypr/scripts/auto-hide-waybar.sh")
+
+    -- Lock screen & screen saver
+    hl.exec_cmd("~/.config/sway/lock.sh & ~/.config/sway/idle.sh")
 end)
