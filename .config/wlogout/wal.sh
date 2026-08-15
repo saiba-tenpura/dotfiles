@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 # Symlink wlogout style
-ln -sf ~/.cache/wal/style-wlogout.css ~/.config/wlogout/style.css
+ln -sf ~/.cache/wal/colors-wlogout.css ~/.config/wlogout/style.css
 
