@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+feh --no-fehbg --bg-fill '/home/saiba/wallpapers/current.png'

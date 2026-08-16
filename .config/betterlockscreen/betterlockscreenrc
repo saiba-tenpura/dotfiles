@@ -1,0 +1,18 @@
+# configuration file for betterlockscreen
+
+. ~/.cache/wal/colors.sh
+
+insidecolor=00000000
+ringcolor=ffffffff
+keyhlcolor=$color1
+bshlcolor=$color1
+separatorcolor=00000000
+insidevercolor=00000000
+insidewrongcolor=$color1
+ringvercolor=ffffffff
+ringwrongcolor=ffffffff
+verifcolor=ffffffff
+timecolor=ffffffff
+datecolor=ffffffff
+loginbox=00000066
+layoutcolor=00000000

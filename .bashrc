@@ -51,6 +51,9 @@ export LESSHISTFILE=/dev/null
 # Window
 shopt -s checkwinsize
 
+# NNN
+. ~/.config/nnn/nnn.sh
+
 # Yazi
 . ~/.config/yazi/yazi.sh
 

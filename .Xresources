@@ -1,0 +1,49 @@
+! .Xresources Config
+
+!! Colorscheme
+#include ".cache/wal/colors.Xresources"
+
+!! Xft
+Xft.dpi: 192
+Xft.antialias: true
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.hinting: true
+Xft.lcdfilter: lcdfilter
+Xft.rgba: rgb
+
+!! URxvt
+! Border
+URxvt.internalBorder: 24
+
+! Copy & Paste
+URxvt.perl-ext-common: default,selection-to-clipboard
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+
+! Font
+URxvt.font: xft:IosevkaTerm NFM:style=Regular:size=10
+URxvt.boldFont: xft:IosevkaTerm NFM:style=Bold:size=10
+URxvt.italicFont: xft:IosevkaTerm NFM:style=Italic:size=10
+URxvt.boldItalicFont: xft:IosevkaTerm NFM:style=Bold Italic:size=10
+
+! Geometry
+! Temporary workaround for scaling issue
+URxvt.geometry: 400x400
+
+! Scrollbar
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+
+! Settings
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveLines: 32768
+URxvt.urgentOnBell: true
+URxvt.depth: 32
+URxvt.iso14755: false
+URxvt.iso14755_2: false
+
