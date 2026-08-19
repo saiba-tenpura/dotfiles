@@ -1,107 +1,107 @@
 {{
   "$schema": "https://opencode.ai/theme.json",
   "defs": {{
-    "color0": "{color0}",
-    "color1": "{color1}",
-    "color2": "{color2}",
-    "color3": "{color3}",
-    "color4": "{color4}",
-    "color5": "{color5}",
-    "color6": "{color6}",
-    "color7": "{color7}",
-    "color8": "{color8}",
-    "color9": "{color9}",
-    "color10": "{color10}",
-    "color11": "{color11}",
-    "color12": "{color12}",
-    "color13": "{color13}",
-    "color14": "{color14}",
-    "color15": "{color15}"
+    "background": "{color0}",
+    "foreground": "{color7}",
+    "red": "{color1}",
+    "green": "{color2}",
+    "yellow": "{color3}",
+    "blue": "{color4}",
+    "magenta": "{color5}",
+    "cyan": "{color6}",
+    "light-background": "{color8}",
+    "light-foreground": "{color15}",
+    "light-red": "{color9}",
+    "light-green": "{color10}",
+    "light-yellow": "{color11}",
+    "light-blue": "{color12}",
+    "light-magenta": "{color13}",
+    "light-cyan": "{color14}"
   }},
   "theme": {{
     "primary": {{
-      "dark": "color8",
-      "light": "color10"
+      "dark": "cyan",
+      "light": "cyan"
     }},
     "secondary": {{
-      "dark": "color9",
-      "light": "color9"
+      "dark": "magenta",
+      "light": "magenta"
     }},
     "accent": {{
-      "dark": "color7",
-      "light": "color7"
+      "dark": "blue",
+      "light": "blue"
     }},
     "error": {{
-      "dark": "color11",
-      "light": "color11"
+      "dark": "red",
+      "light": "red"
     }},
     "warning": {{
-      "dark": "color12",
-      "light": "color12"
+      "dark": "yellow",
+      "light": "yellow"
     }},
     "success": {{
-      "dark": "color14",
-      "light": "color14"
+      "dark": "green",
+      "light": "green"
     }},
     "info": {{
-      "dark": "color8",
-      "light": "color10"
+      "dark": "blue",
+      "light": "blue"
     }},
     "text": {{
-      "dark": "color4",
-      "light": "color0"
+      "dark": "foreground",
+      "light": "background"
     }},
     "textMuted": {{
-      "dark": "color3",
-      "light": "color1"
+      "dark": "light-foreground",
+      "light": "light-background"
     }},
     "background": {{
-      "dark": "color0",
-      "light": "color6"
+      "dark": "background",
+      "light": "foreground"
     }},
     "backgroundPanel": {{
-      "dark": "color1",
-      "light": "color5"
+      "dark": "light-background",
+      "light": "light-foreground"
     }},
     "backgroundElement": {{
-      "dark": "color1",
-      "light": "color4"
+      "dark": "light-background",
+      "light": "light-foreground"
     }},
     "border": {{
-      "dark": "color2",
-      "light": "color3"
+      "dark": "background",
+      "light": "foreground"
     }},
     "borderActive": {{
-      "dark": "color3",
-      "light": "color2"
+      "dark": "red",
+      "light": "red"
     }},
     "borderSubtle": {{
-      "dark": "color2",
-      "light": "color3"
+      "dark": "green",
+      "light": "yellow"
     }},
     "diffAdded": {{
-      "dark": "color14",
-      "light": "color14"
+      "dark": "light-green",
+      "light": "light-green"
     }},
     "diffRemoved": {{
-      "dark": "color11",
-      "light": "color11"
+      "dark": "light-red",
+      "light": "light-red"
     }},
     "diffContext": {{
-      "dark": "color3",
-      "light": "color3"
+      "dark": "yellow",
+      "light": "yellow"
     }},
     "diffHunkHeader": {{
-      "dark": "color3",
-      "light": "color3"
+      "dark": "yellow",
+      "light": "yellow"
     }},
     "diffHighlightAdded": {{
-      "dark": "color14",
-      "light": "color14"
+      "dark": "light-green",
+      "light": "light-green"
     }},
     "diffHighlightRemoved": {{
-      "dark": "color11",
-      "light": "color11"
+      "dark": "light-red",
+      "light": "light-red"
     }},
     "diffAddedBg": {{
       "dark": "#3B4252",
@@ -112,12 +112,12 @@
       "light": "#E5E9F0"
     }},
     "diffContextBg": {{
-      "dark": "color1",
-      "light": "color5"
+      "dark": "magenta",
+      "light": "magenta"
     }},
     "diffLineNumber": {{
-      "dark": "color2",
-      "light": "color4"
+      "dark": "cyan",
+      "light": "cyan"
     }},
     "diffAddedLineNumberBg": {{
       "dark": "#3B4252",
@@ -128,96 +128,96 @@
       "light": "#E5E9F0"
     }},
     "markdownText": {{
-      "dark": "color4",
-      "light": "color0"
+      "dark": "blue",
+      "light": "background"
     }},
     "markdownHeading": {{
-      "dark": "color8",
-      "light": "color10"
+      "dark": "light-background",
+      "light": "light-green"
     }},
     "markdownLink": {{
-      "dark": "color9",
-      "light": "color9"
+      "dark": "light-red",
+      "light": "light-red"
     }},
     "markdownLinkText": {{
-      "dark": "color7",
-      "light": "color7"
+      "dark": "foreground",
+      "light": "foreground"
     }},
     "markdownCode": {{
-      "dark": "color14",
-      "light": "color14"
+      "dark": "light-cyan",
+      "light": "light-cyan"
     }},
     "markdownBlockQuote": {{
-      "dark": "color3",
-      "light": "color3"
+      "dark": "yellow",
+      "light": "yellow"
     }},
     "markdownEmph": {{
-      "dark": "color12",
-      "light": "color12"
+      "dark": "light-blue",
+      "light": "light-blue"
     }},
     "markdownStrong": {{
-      "dark": "color13",
-      "light": "color13"
+      "dark": "light-magenta",
+      "light": "light-magenta"
     }},
     "markdownHorizontalRule": {{
-      "dark": "color3",
-      "light": "color3"
+      "dark": "yellow",
+      "light": "yellow"
     }},
     "markdownListItem": {{
-      "dark": "color8",
-      "light": "color10"
+      "dark": "light-background",
+      "light": "light-green"
     }},
     "markdownListEnumeration": {{
-      "dark": "color7",
-      "light": "color7"
+      "dark": "foreground",
+      "light": "foreground"
     }},
     "markdownImage": {{
-      "dark": "color9",
-      "light": "color9"
+      "dark": "light-red",
+      "light": "light-red"
     }},
     "markdownImageText": {{
-      "dark": "color7",
-      "light": "color7"
+      "dark": "foreground",
+      "light": "foreground"
     }},
     "markdownCodeBlock": {{
-      "dark": "color4",
-      "light": "color0"
+      "dark": "blue",
+      "light": "background"
     }},
     "syntaxComment": {{
-      "dark": "color3",
-      "light": "color3"
+      "dark": "yellow",
+      "light": "yellow"
     }},
     "syntaxKeyword": {{
-      "dark": "color9",
-      "light": "color9"
+      "dark": "light-red",
+      "light": "light-red"
     }},
     "syntaxFunction": {{
-      "dark": "color8",
-      "light": "color8"
+      "dark": "light-background",
+      "light": "light-background"
     }},
     "syntaxVariable": {{
-      "dark": "color7",
-      "light": "color7"
+      "dark": "foreground",
+      "light": "foreground"
     }},
     "syntaxString": {{
-      "dark": "color14",
-      "light": "color14"
+      "dark": "light-cyan",
+      "light": "light-cyan"
     }},
     "syntaxNumber": {{
-      "dark": "color15",
-      "light": "color15"
+      "dark": "light-foreground",
+      "light": "light-foreground"
     }},
     "syntaxType": {{
-      "dark": "color7",
-      "light": "color7"
+      "dark": "foreground",
+      "light": "foreground"
     }},
     "syntaxOperator": {{
-      "dark": "color9",
-      "light": "color9"
+      "dark": "light-red",
+      "light": "light-red"
     }},
     "syntaxPunctuation": {{
-      "dark": "color4",
-      "light": "color0"
+      "dark": "blue",
+      "light": "background"
     }}
   }}
 }}
