@@ -57,6 +57,7 @@ return {
 
       local servers = {
         'bashls',
+        'copilot_ls',
         'cssls',
         'eslint',
         'jsonls',
