@@ -1,4 +1,4 @@
-require('modules.vars')
+require('config.vars')
 
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + SHIFT + Q", hl.dsp.window.close())

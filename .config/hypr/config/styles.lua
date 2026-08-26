@@ -51,7 +51,7 @@ hl.config({
     },
 })
 
-require("modules/colors")
+require("config/colors")
 
 hl.config({
     dwindle = {
