@@ -38,6 +38,7 @@ alias vim='nvim'
 export TERMINAL="ghostty"
 export EDITOR="nvim"
 export BROWSER="firefox"
+export GTK_IM_MODULE="simple"
 export GTK_THEME="Adwaita:dark"
 export GTK2_RC_FILES="/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc"
 
