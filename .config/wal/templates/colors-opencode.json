@@ -1,223 +1,333 @@
 {{
   "$schema": "https://opencode.ai/theme.json",
-  "defs": {{
-    "background": "{color0}",
-    "foreground": "{color7}",
-    "red": "{color1}",
-    "green": "{color2}",
-    "yellow": "{color3}",
-    "blue": "{color4}",
-    "magenta": "{color5}",
-    "cyan": "{color6}",
-    "light-background": "{color8}",
-    "light-foreground": "{color15}",
-    "light-red": "{color9}",
-    "light-green": "{color10}",
-    "light-yellow": "{color11}",
-    "light-blue": "{color12}",
-    "light-magenta": "{color13}",
-    "light-cyan": "{color14}"
-  }},
-  "theme": {{
-    "primary": {{
-      "dark": "cyan",
-      "light": "cyan"
-    }},
-    "secondary": {{
-      "dark": "magenta",
-      "light": "magenta"
-    }},
-    "accent": {{
-      "dark": "blue",
-      "light": "blue"
-    }},
-    "error": {{
-      "dark": "red",
-      "light": "red"
-    }},
-    "warning": {{
-      "dark": "yellow",
-      "light": "yellow"
-    }},
-    "success": {{
-      "dark": "green",
-      "light": "green"
-    }},
-    "info": {{
-      "dark": "blue",
-      "light": "blue"
-    }},
+  "base": {{
+    "categorical": [
+      "regular",
+      "light",
+      "neutral"
+    ],
     "text": {{
-      "dark": "foreground",
-      "light": "background"
-    }},
-    "textMuted": {{
-      "dark": "light-foreground",
-      "light": "light-background"
+      "base": "$hue.regular.800",
+      "muted": "$hue.regular.700",
+      "action": {{
+        "primary": {{
+          "base": "$text.base",
+          "$focused": "$hue.neutral.900",
+          "$selected": "$hue.regular.700",
+          "$disabled": "$hue.neutral.400"
+        }},
+        "secondary": {{
+          "base": "$text.muted",
+          "$hovered": "$text.base"
+        }},
+        "destructive": {{
+          "base": "$hue.neutral.800",
+          "$disabled": "$hue.neutral.400"
+        }}
+      }},
+      "formfield": {{
+        "base": "$hue.regular.800",
+        "$hovered": "$hue.accent.400",
+        "$focused": "$hue.regular.700",
+        "$pressed": "$hue.regular.400",
+        "$selected": "$hue.regular.400",
+        "$disabled": "$hue.light.100"
+      }},
+      "feedback": {{
+        "error": {{
+          "base": "$hue.regular.200"
+        }},
+        "warning": {{
+          "base": "#f5a742"
+        }},
+        "success": {{
+          "base": "$hue.regular.300"
+        }},
+        "info": {{
+          "base": "$hue.regular.700"
+        }}
+      }}
     }},
     "background": {{
-      "dark": "background",
-      "light": "foreground"
-    }},
-    "backgroundPanel": {{
-      "dark": "light-background",
-      "light": "light-foreground"
-    }},
-    "backgroundElement": {{
-      "dark": "light-background",
-      "light": "light-foreground"
+      "base": "$hue.regular.100",
+      "raised": {{
+        "base": "$hue.neutral.600",
+        "high": "$hue.neutral.700",
+        "max": "$hue.neutral.800"
+      }},
+      "action": {{
+        "primary": {{
+          "base": "transparent",
+          "$hovered": "$hue.neutral.700",
+          "$focused": "$hue.interactive.200",
+          "$selected": "transparent"
+        }},
+        "secondary": {{
+          "base": "transparent"
+        }},
+        "destructive": {{
+          "base": "$hue.regular.200"
+        }}
+      }},
+      "formfield": {{
+        "base": "$background.base"
+      }},
+      "feedback": {{
+        "error": {{
+          "base": "$background.base"
+        }},
+        "warning": {{
+          "base": "$background.base"
+        }},
+        "success": {{
+          "base": "$background.base"
+        }},
+        "info": {{
+          "base": "$background.base"
+        }}
+      }}
     }},
     "border": {{
-      "dark": "background",
-      "light": "foreground"
+      "base": "transparent"
     }},
-    "borderActive": {{
-      "dark": "red",
-      "light": "red"
+    "scrollbar": {{
+      "base": "#606060"
     }},
-    "borderSubtle": {{
-      "dark": "green",
-      "light": "yellow"
+    "diff": {{
+      "text": {{
+        "added": "#4fd6be",
+        "removed": "#c53b53",
+        "context": "#828bb8",
+        "hunkHeader": "#828bb8"
+      }},
+      "background": {{
+        "added": "#20303b",
+        "removed": "#37222c",
+        "context": "$hue.neutral.600"
+      }},
+      "highlight": {{
+        "added": "#b8db87",
+        "removed": "#e26a75"
+      }},
+      "lineNumber": {{
+        "text": "#8f8f8f",
+        "background": {{
+          "added": "#1b2b34",
+          "removed": "#2d1f26"
+        }}
+      }}
     }},
-    "diffAdded": {{
-      "dark": "light-green",
-      "light": "light-green"
+    "syntax": {{
+      "comment": "$hue.neutral.400",
+      "keyword": "$hue.regular.400",
+      "function": "$hue.interactive.500",
+      "variable": "$hue.regular.200",
+      "string": "$hue.regular.300",
+      "number": "#f5a742",
+      "type": "#e5c07b",
+      "operator": "$hue.regular.600",
+      "punctuation": "$hue.neutral.200"
     }},
-    "diffRemoved": {{
-      "dark": "light-red",
-      "light": "light-red"
+    "markdown": {{
+      "text": "$hue.neutral.200",
+      "heading": "$hue.accent.400",
+      "link": "$hue.interactive.600",
+      "linkText": "$hue.neutral.200",
+      "code": "$hue.regular.300",
+      "blockQuote": "#e5c07b",
+      "emphasis": "#e5c07b",
+      "strong": "#f5a742",
+      "horizontalRule": "$hue.neutral.400",
+      "listItem": "$hue.interactive.200",
+      "listEnumeration": "$hue.neutral.200",
+      "image": "$hue.interactive.200",
+      "imageText": "$hue.neutral.200",
+      "codeBlock": "$hue.neutral.200"
     }},
-    "diffContext": {{
-      "dark": "yellow",
-      "light": "yellow"
+    "@dialog": {{
+      "background": {{
+        "base": "$hue.regular.100",
+        "action": {{
+          "primary": {{
+            "$hovered": "$background.raised.high",
+            "$focused": "$hue.accent.700"
+          }}
+        }}
+      }}
+    }}
+  }},
+  "light": {{
+    "hue": {{
+      "accent": "$hue.regular",
+      "interactive": "$hue.light",
+      "neutral": "$hue.gray",
+      "regular": {{
+        "100": "{color0}",
+        "200": "{color1}",
+        "300": "{color2}",
+        "400": "{color3}",
+        "500": "{color4}",
+        "600": "{color5}",
+        "700": "{color6}",
+        "800": "{color7}",
+        "900": "#ffffff"
+      }},
+      "light": {{
+        "100": "{color8}",
+        "200": "{color9}",
+        "300": "{color10}",
+        "400": "{color11}",
+        "500": "{color12}",
+        "600": "{color13}",
+        "700": "{color14}",
+        "800": "{color15}",
+        "900": "#ffffff"
+      }},
+      "gray": {{
+        "100": "#030303",
+        "200": "#0a0a0a",
+        "300": "#141414",
+        "400": "#4c4c4c",
+        "500": "#808080",
+        "600": "#b5b5b5",
+        "700": "#d1d5db",
+        "800": "#eeeeee",
+        "900": "#fefefe"
+      }}
     }},
-    "diffHunkHeader": {{
-      "dark": "yellow",
-      "light": "yellow"
+    "text": {{
+      "base": "$hue.regular.100",
+      "muted": "$hue.regular.200",
+      "action": {{
+        "primary": {{
+          "$selected": "$hue.interactive.200"
+        }},
+        "destructive": {{
+          "base": "$hue.regular.900",
+          "$disabled": "$hue.gray.400"
+        }}
+      }},
+      "formfield": {{
+        "base": "$hue.regular.100",
+        "$hovered": "$hue.light.200",
+        "$focused": "$hue.light.200",
+        "$pressed": "$hue.light.200",
+        "$selected": "$hue.light.200",
+        "$disabled": "$hue.neutral.400"
+      }},
+      "feedback": {{
+        "warning": {{
+          "base": "$hue.regular.400"
+        }}
+      }}
     }},
-    "diffHighlightAdded": {{
-      "dark": "light-green",
-      "light": "light-green"
+    "background": {{
+      "base": "$hue.regular.900",
+      "raised": {{
+        "base": "$hue.neutral.800",
+        "high": "$hue.neutral.800",
+        "max": "$hue.neutral.700"
+      }},
+      "action": {{
+        "primary": {{
+          "$hovered": "$hue.regular.700",
+          "$focused": "$hue.regular.700"
+        }},
+        "destructive": {{
+          "base": "$hue.light.200"
+        }}
+      }}
     }},
-    "diffHighlightRemoved": {{
-      "dark": "light-red",
-      "light": "light-red"
+    "border": {{
+      "base": "#b8b8b8"
     }},
-    "diffAddedBg": {{
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
+    "scrollbar": {{
+      "base": "#a0a0a0"
     }},
-    "diffRemovedBg": {{
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
+    "diff": {{
+      "text": {{
+        "added": "#1e725c",
+        "context": "#7086b5",
+        "hunkHeader": "#7086b5"
+      }},
+      "background": {{
+        "added": "#d5e5d5",
+        "removed": "#f7d8db",
+        "context": "$hue.neutral.700"
+      }},
+      "highlight": {{
+        "added": "#4db380",
+        "removed": "#f52a65"
+      }},
+      "lineNumber": {{
+        "text": "#595959",
+        "background": {{
+          "added": "#c5d5c5",
+          "removed": "#e7c8cb"
+        }}
+      }}
     }},
-    "diffContextBg": {{
-      "dark": "magenta",
-      "light": "magenta"
+    "syntax": {{
+      "keyword": "$hue.accent.200",
+      "function": "$hue.interactive.200",
+      "variable": "$hue.neutral.200",
+      "string": "$hue.neutral.200",
+      "number": "$hue.accent.200",
+      "type": "#b0851f",
+      "operator": "$hue.neutral.200"
     }},
-    "diffLineNumber": {{
-      "dark": "cyan",
-      "light": "cyan"
+    "markdown": {{
+      "link": "$hue.interactive.200",
+      "blockQuote": "#b0851f",
+      "emphasis": "#b0851f",
+      "strong": "$hue.accent.200",
+      "listItem": "$hue.interactive.700",
+      "listEnumeration": "$hue.regular.700"
     }},
-    "diffAddedLineNumberBg": {{
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
-    }},
-    "diffRemovedLineNumberBg": {{
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
-    }},
-    "markdownText": {{
-      "dark": "blue",
-      "light": "background"
-    }},
-    "markdownHeading": {{
-      "dark": "light-background",
-      "light": "light-green"
-    }},
-    "markdownLink": {{
-      "dark": "light-red",
-      "light": "light-red"
-    }},
-    "markdownLinkText": {{
-      "dark": "foreground",
-      "light": "foreground"
-    }},
-    "markdownCode": {{
-      "dark": "light-cyan",
-      "light": "light-cyan"
-    }},
-    "markdownBlockQuote": {{
-      "dark": "yellow",
-      "light": "yellow"
-    }},
-    "markdownEmph": {{
-      "dark": "light-blue",
-      "light": "light-blue"
-    }},
-    "markdownStrong": {{
-      "dark": "light-magenta",
-      "light": "light-magenta"
-    }},
-    "markdownHorizontalRule": {{
-      "dark": "yellow",
-      "light": "yellow"
-    }},
-    "markdownListItem": {{
-      "dark": "light-background",
-      "light": "light-green"
-    }},
-    "markdownListEnumeration": {{
-      "dark": "foreground",
-      "light": "foreground"
-    }},
-    "markdownImage": {{
-      "dark": "light-red",
-      "light": "light-red"
-    }},
-    "markdownImageText": {{
-      "dark": "foreground",
-      "light": "foreground"
-    }},
-    "markdownCodeBlock": {{
-      "dark": "blue",
-      "light": "background"
-    }},
-    "syntaxComment": {{
-      "dark": "yellow",
-      "light": "yellow"
-    }},
-    "syntaxKeyword": {{
-      "dark": "light-red",
-      "light": "light-red"
-    }},
-    "syntaxFunction": {{
-      "dark": "light-background",
-      "light": "light-background"
-    }},
-    "syntaxVariable": {{
-      "dark": "foreground",
-      "light": "foreground"
-    }},
-    "syntaxString": {{
-      "dark": "light-cyan",
-      "light": "light-cyan"
-    }},
-    "syntaxNumber": {{
-      "dark": "light-foreground",
-      "light": "light-foreground"
-    }},
-    "syntaxType": {{
-      "dark": "foreground",
-      "light": "foreground"
-    }},
-    "syntaxOperator": {{
-      "dark": "light-red",
-      "light": "light-red"
-    }},
-    "syntaxPunctuation": {{
-      "dark": "blue",
-      "light": "background"
+    "@dialog": {{
+      "background": {{
+        "base": "$background.raised.base"
+      }}
+    }}
+  }},
+  "dark": {{
+    "hue": {{
+      "accent": "$hue.regular",
+      "interactive": "$hue.light",
+      "neutral": "$hue.gray",
+      "regular": {{
+        "100": "{color0}",
+        "200": "{color1}",
+        "300": "{color2}",
+        "400": "{color3}",
+        "500": "{color4}",
+        "600": "{color5}",
+        "700": "{color6}",
+        "800": "{color7}",
+        "900": "#000000"
+      }},
+      "light": {{
+        "100": "{color8}",
+        "200": "{color9}",
+        "300": "{color10}",
+        "400": "{color11}",
+        "500": "{color12}",
+        "600": "{color13}",
+        "700": "{color14}",
+        "800": "{color15}",
+        "900": "#000000"
+      }},
+      "gray": {{
+        "100": "#fefefe",
+        "200": "#eeeeee",
+        "300": "#b5b5b5",
+        "400": "#808080",
+        "500": "#4c4c4c",
+        "600": "#1e1e1e",
+        "700": "#141414",
+        "800": "#0a0a0a",
+        "900": "#030303"
+      }}
     }}
   }}
 }}
