@@ -1,0 +1,20 @@
+[Unit]
+Description=llama.cpp (Vulkan)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/llama-server --host 127.0.0.1 \
+                                --port 8080 \
+                                --device ROCm0 \
+                                --jinja \
+                                --load-mode none \
+                                --models-max 1 \
+                                --no-mmproj \
+                                --reasoning-preserve \
+                                --sleep-idle-seconds 3600 \
+                                --models-preset %h/.config/llama.cpp/preset.ini
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
