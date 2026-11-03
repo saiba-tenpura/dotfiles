@@ -17,9 +17,9 @@ hl.config({
 })
 
 hl.gesture({
-    fingers = 3,
+    fingers   = 3,
     direction = "horizontal",
-    action = "workspace"
+    action    = "workspace"
 })
 
 hl.device({
@@ -29,3 +29,8 @@ hl.device({
     kb_options = "nodeadkeys",
 })
 
+hl.device({
+    name       = "wacom-intuos-pt-m-2-pen",
+    transform  = 0,
+    output     = "DP-1"
+})
