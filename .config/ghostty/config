@@ -1,9 +1,6 @@
 # Defaults: ghostty +show-config --default --docs
 # Reload: Control + Shift + ,
 
-# Colors
-config-file = ~/.cache/wal/ghostty.conf
-
 # Cursor
 cursor-style = block
 
@@ -29,9 +26,6 @@ keybind = ctrl+alt+k=goto_split:up
 keybind = ctrl+alt+j=goto_split:down
 keybind = ctrl+alt+l=goto_split:right
 
-## Utility
-keybind = performable:ctrl+c=copy_to_clipboard
-
 # Window
 gtk-titlebar = false
 window-decoration = server
@@ -40,11 +34,13 @@ window-padding-y = 10
 
 # Split
 unfocused-split-opacity = 0.8
+# unfocused-split-fill =
+# split-divider-color =
 
 # Miscellaneous
 app-notifications = no-clipboard-copy, no-config-reload
 confirm-close-surface=false
-copy-on-select = clipboard
+copy-on-select = both
 mouse-hide-while-typing = true
 resize-overlay = never
 scroll-to-bottom = keystroke,no-output
